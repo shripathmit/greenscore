@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GreenScore - Instantly Rate Product Sustainability</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <div class="nav-brand">
+                    <h2 class="nav-logo">🌱 GreenScore</h2>
+                </div>
+                <div class="nav-links">
+                    <a href="#home" class="nav-link">Home</a>
+                    <a href="#how-it-works" class="nav-link">How It Works</a>
+                    <a href="#faq" class="nav-link">FAQ</a>
+                    <a href="#about" class="nav-link">About</a>
+                    <a href="#contact" class="nav-link">Contact</a>
+                </div>
+                <button class="mobile-menu-btn" aria-label="Toggle menu">☰</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu hidden">
+        <div class="mobile-menu-content">
+            <a href="#home" class="mobile-menu-link">Home</a>
+            <a href="#how-it-works" class="mobile-menu-link">How It Works</a>
+            <a href="#faq" class="mobile-menu-link">FAQ</a>
+            <a href="#about" class="mobile-menu-link">About</a>
+            <a href="#contact" class="mobile-menu-link">Contact</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Instantly rate any product's environmental impact</h1>
+                <p class="hero-subtitle">Make sustainable choices with confidence. Snap a photo, get your GreenScore, and choose products that protect our planet.</p>
+                
+                <div class="hero-process">
+                    <div class="process-step">
+                        <span class="process-icon">📸</span>
+                        <span class="process-text">Snap</span>
+                    </div>
+                    <div class="process-arrow">→</div>
+                    <div class="process-step">
+                        <span class="process-icon">📊</span>
+                        <span class="process-text">Score</span>
+                    </div>
+                    <div class="process-arrow">→</div>
+                    <div class="process-step">
+                        <span class="process-icon">🌱</span>
+                        <span class="process-text">Choose</span>
+                    </div>
+                </div>
+
+                <div class="hero-cta">
+                    <button class="btn btn--primary btn--lg" id="score-product-btn">Score a Product</button>
+                    <button class="btn btn--outline btn--lg" id="learn-more-btn">Learn More</button>
+                </div>
+
+                <div class="hero-stats">
+                    <div class="stat">
+                        <div class="stat-number" id="products-scored">50,000+</div>
+                        <div class="stat-label">Products Scored</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number" id="bottles-avoided">125,000+</div>
+                        <div class="stat-label">Plastic Bottles Avoided</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number" id="co2-saved">15 tons</div>
+                        <div class="stat-label">CO₂ Saved</div>
+                    </div>
+                </div>
+
+                <div class="hero-mission">
+                    <p class="mission-text">📍 <strong>73% of consumers want to buy sustainably</strong> - but it's hard to know which products are truly eco-friendly. GreenScore makes sustainable shopping simple and transparent.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Scoring Tool -->
+    <section id="scoring-tool" class="scoring-section">
+        <div class="container">
+            <div class="scoring-content">
+                <h2 class="section-title">Score Your Product</h2>
+                <p class="section-subtitle">Upload a photo or take a picture to get an instant sustainability score</p>
+
+                <div class="upload-area" id="upload-area">
+                    <div class="upload-content">
+                        <span class="upload-icon">📷</span>
+                        <h3>Upload Product Photo</h3>
+                        <p>Drag and drop an image here or click to select</p>
+                        <div class="upload-buttons">
+                            <button class="btn btn--primary" id="file-upload-btn">Choose File</button>
+                            <button class="btn btn--secondary" id="camera-btn">Use Camera</button>
+                        </div>
+                    </div>
+                    <input type="file" id="file-input" accept="image/*" style="display: none;">
+                    <input type="file" id="camera-input" accept="image/*" capture="environment" style="display: none;">
+                </div>
+
+                <div class="preview-area hidden" id="preview-area">
+                    <img id="preview-image" alt="Product preview">
+                    <button class="btn btn--outline" id="analyze-btn">Analyze Product</button>
+                </div>
+
+                <div class="results-area hidden" id="results-area">
+                    <div class="score-display">
+                        <div class="score-circle" id="score-circle">
+                            <span class="score-number" id="score-number">0</span>
+                            <span class="score-text">GreenScore</span>
+                        </div>
+                        <div class="score-info">
+                            <h3 id="product-name">Product Analysis</h3>
+                            <p id="score-explanation">Analyzing your product...</p>
+                        </div>
+                    </div>
+
+                    <div class="score-details">
+                        <div class="factors-section">
+                            <h4>Key Factors</h4>
+                            <div class="factors-list" id="factors-list"></div>
+                        </div>
+
+                        <div class="recommendations-section">
+                            <h4>💡 Recommendation</h4>
+                            <p id="recommendations"></p>
+                        </div>
+                    </div>
+
+                    <button class="btn btn--secondary btn--full-width" id="try-another-btn">Try Another Product</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section id="how-it-works" class="how-it-works">
+        <div class="container">
+            <h2 class="section-title">How GreenScore Works</h2>
+            <p class="section-subtitle">Our comprehensive scoring system evaluates products across 8 core sustainability metrics</p>
+
+            <div class="steps-grid">
+                <div class="step-card">
+                    <span class="step-icon">📸</span>
+                    <h3>1. Capture or Upload</h3>
+                    <p>Take a photo of any product or upload an existing image from your device</p>
+                </div>
+                <div class="step-card">
+                    <span class="step-icon">🔍</span>
+                    <h3>2. Instant Analysis</h3>
+                    <p>Our AI analyzes the product using 8 sustainability metrics and comprehensive databases</p>
+                </div>
+                <div class="step-card">
+                    <span class="step-icon">📊</span>
+                    <h3>3. Get Your Score</h3>
+                    <p>Receive a clear 1-10 GreenScore with detailed explanations and recommendations</p>
+                </div>
+            </div>
+
+            <div class="metrics-section">
+                <h3>Our 8 Core Sustainability Metrics</h3>
+                <div class="metrics-grid" id="metrics-grid"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="faq-section">
+        <div class="container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <div class="faq-list" id="faq-list"></div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="about-content">
+                <h2 class="section-title">Our Mission</h2>
+                <p class="about-text">GreenScore exists to make sustainability accessible to everyone. In a world where 73% of consumers want to make eco-friendly choices but struggle to identify truly sustainable products, we provide the transparency and guidance needed to make informed decisions.</p>
+                
+                <div class="mission-stats">
+                    <div class="mission-stat">
+                        <h3>Our Impact Goal</h3>
+                        <p>Help consumers avoid single-use plastics and reduce their environmental footprint through informed purchasing decisions.</p>
+                    </div>
+                    <div class="mission-stat">
+                        <h3>Transparency First</h3>
+                        <p>Our scoring methodology is open, research-based, and continuously updated with the latest sustainability data.</p>
+                    </div>
+                </div>
+
+                <div class="team-section">
+                    <h3>Built by Environmental Advocates</h3>
+                    <p>Our team combines environmental science expertise with technology innovation to create tools that drive sustainable consumption.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <h2 class="section-title">Get in Touch</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>We'd Love to Hear From You</h3>
+                    <p>Have feedback, questions, or interested in partnerships? Reach out to us!</p>
+                    
+                    <div class="contact-methods">
+                        <div class="contact-method">
+                            <span class="contact-icon">📧</span>
+                            <span>hello@greenscore.app</span>
+                        </div>
+                        <div class="contact-method">
+                            <span class="contact-icon">🤝</span>
+                            <span>partnerships@greenscore.app</span>
+                        </div>
+                    </div>
+                </div>
+
+                <form class="contact-form" id="contact-form">
+                    <div class="form-group">
+                        <label class="form-label" for="name">Name</label>
+                        <input type="text" class="form-control" id="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="email">Email</label>
+                        <input type="email" class="form-control" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="subject">Subject</label>
+                        <select class="form-control" id="subject" required>
+                            <option value="">Select a topic...</option>
+                            <option value="feedback">General Feedback</option>
+                            <option value="partnership">Partnership Inquiry</option>
+                            <option value="support">Technical Support</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="message">Message</label>
+                        <textarea class="form-control" id="message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn--primary btn--full-width">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>🌱 GreenScore</h3>
+                    <p>Making sustainable choices simple and transparent</p>
+                </div>
+                <div class="footer-links">
+                    <a href="#home">Home</a>
+                    <a href="#how-it-works">How It Works</a>
+                    <a href="#faq">FAQ</a>
+                    <a href="#about">About</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                <div class="footer-social">
+                    <p>Share your GreenScore:</p>
+                    <div class="social-buttons">
+                        <button class="social-btn" id="share-twitter">Twitter</button>
+                        <button class="social-btn" id="share-facebook">Facebook</button>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 GreenScore. Made with 🌱 for a sustainable future.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
