@@ -1,325 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GreenScore - AI-Powered Sustainability Scoring v2</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GreenScore</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Particle Canvas -->
-    <canvas id="particle-canvas"></canvas>
-    
-    <!-- Navigation with Glassmorphism -->
-    <nav class="navbar glassmorphism">
-        <div class="container">
-            <div class="nav-content">
-                <div class="nav-brand">
-                    <h2 class="nav-logo glow-text">🌱 GreenScore</h2>
-                </div>
-                <div class="nav-links">
-                    <a href="#home" class="nav-link">Home</a>
-                    <a href="#how-it-works" class="nav-link">How It Works</a>
-                    <a href="#faq" class="nav-link">FAQ</a>
-                    <a href="#about" class="nav-link">About</a>
-                    <a href="#contact" class="nav-link">Contact</a>
-                </div>
-                <button class="mobile-menu-btn" aria-label="Toggle menu">☰</button>
-            </div>
-        </div>
+  <header class="header">
+    <h1>GreenScore</h1>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#score">Score</a>
+      <a href="#about">About</a>
     </nav>
+  </header>
 
-    <!-- Mobile Menu -->
-    <div class="mobile-menu hidden">
-        <div class="mobile-menu-content">
-            <a href="#home" class="mobile-menu-link">Home</a>
-            <a href="#how-it-works" class="mobile-menu-link">How It Works</a>
-            <a href="#faq" class="mobile-menu-link">FAQ</a>
-            <a href="#about" class="mobile-menu-link">About</a>
-            <a href="#contact" class="mobile-menu-link">Contact</a>
-        </div>
-    </div>
-
-    <!-- Hero Section with AI-Earth Background -->
-    <section id="home" class="hero ai-earth-hero">
-        <div class="hero-background">
-            <div class="gradient-overlay"></div>
-            <div class="neural-network"></div>
-        </div>
-        <div class="container">
-            <div class="hero-content">
-                <h1 class="hero-title glow-text floating-animation">AI-Powered Sustainability Scoring</h1>
-                <p class="hero-subtitle pulse-animation">Harness artificial intelligence to make eco-conscious choices. Our advanced algorithms analyze products instantly, connecting technology with environmental stewardship.</p>
-                
-                <div class="hero-process">
-                    <div class="process-step floating-card">
-                        <span class="process-icon tech-glow">📸</span>
-                        <span class="process-text">Capture</span>
-                    </div>
-                    <div class="process-arrow neural-flow">→</div>
-                    <div class="process-step floating-card">
-                        <span class="process-icon tech-glow">🤖</span>
-                        <span class="process-text">AI Analysis</span>
-                    </div>
-                    <div class="process-arrow neural-flow">→</div>
-                    <div class="process-step floating-card">
-                        <span class="process-icon tech-glow">🌱</span>
-                        <span class="process-text">Green Choice</span>
-                    </div>
-                </div>
-
-                <div class="hero-cta">
-                    <button class="btn btn--primary btn--lg glow-button pulse-button" id="score-product-btn">Score with AI</button>
-                    <button class="btn btn--outline btn--lg glass-button" id="learn-more-btn">Explore Technology</button>
-                </div>
-
-                <div class="hero-stats organic-grid">
-                    <div class="stat neural-stat">
-                        <div class="stat-number glow-number" id="products-scored">50,000+</div>
-                        <div class="stat-label">AI Analyses</div>
-                    </div>
-                    <div class="stat neural-stat">
-                        <div class="stat-number glow-number" id="bottles-avoided">125,000+</div>
-                        <div class="stat-label">Earth Savings</div>
-                    </div>
-                    <div class="stat neural-stat">
-                        <div class="stat-number glow-number" id="co2-saved">15 tons</div>
-                        <div class="stat-label">CO₂ Prevented</div>
-                    </div>
-                </div>
-
-                <div class="hero-mission glassmorphism-card">
-                    <div class="mission-icon">🤖🌍</div>
-                    <p class="mission-text"><strong>Where AI meets Earth:</strong> Advanced machine learning algorithms analyze sustainability factors in real-time, democratizing environmental intelligence for conscious consumers worldwide.</p>
-                </div>
-            </div>
-        </div>
+  <main id="home">
+    <section class="hero">
+      <h2>Simple sustainability scoring</h2>
+      <p>Upload a product photo to estimate its environmental impact.</p>
+      <div class="scoring" id="score">
+        <input type="file" id="image-input" accept="image/*">
+        <button id="score-btn">Score product</button>
+        <p id="result"></p>
+      </div>
     </section>
 
-    <!-- Product Scoring Tool -->
-    <section id="scoring-tool" class="scoring-section tech-organic">
-        <div class="container">
-            <div class="scoring-content">
-                <h2 class="section-title glow-text">AI Sustainability Analysis</h2>
-                <p class="section-subtitle">Upload any product image for instant AI-powered environmental impact assessment</p>
-
-                <div class="upload-area glassmorphism-upload" id="upload-area">
-                    <div class="upload-content">
-                        <div class="upload-icon-container">
-                            <span class="upload-icon neural-pulse">📷</span>
-                            <div class="scan-lines"></div>
-                        </div>
-                        <h3>Neural Network Analysis</h3>
-                        <p>Drop your product image here for AI processing</p>
-                        <div class="upload-buttons">
-                            <button class="btn btn--primary glow-button" id="file-upload-btn">Choose File</button>
-                            <button class="btn btn--secondary glass-button" id="camera-btn">Use Camera</button>
-                        </div>
-                    </div>
-                    <input type="file" id="file-input" accept="image/*" style="display: none;">
-                    <input type="file" id="camera-input" accept="image/*" capture="environment" style="display: none;">
-                </div>
-
-                <div class="preview-area hidden" id="preview-area">
-                    <div class="image-container glassmorphism-frame">
-                        <img id="preview-image" alt="Product preview">
-                        <div class="scanning-overlay"></div>
-                    </div>
-                    <button class="btn btn--outline glow-button pulse-button" id="analyze-btn">Initiate AI Analysis</button>
-                </div>
-
-                <div class="results-area hidden glassmorphism-card" id="results-area">
-                    <div class="score-display">
-                        <div class="score-circle neural-circle" id="score-circle">
-                            <div class="score-inner">
-                                <span class="score-number" id="score-number">0</span>
-                                <span class="score-text">AI Score</span>
-                            </div>
-                            <div class="score-animation"></div>
-                        </div>
-                        <div class="score-info">
-                            <h3 id="product-name" class="glow-text">AI Analysis Complete</h3>
-                            <p id="score-explanation">Neural network processing...</p>
-                        </div>
-                    </div>
-
-                    <div class="score-details">
-                        <div class="factors-section glassmorphism-section">
-                            <h4>🧠 AI Insights</h4>
-                            <div class="factors-list" id="factors-list"></div>
-                        </div>
-
-                        <div class="recommendations-section glassmorphism-section">
-                            <h4>🌍 Earth Impact</h4>
-                            <p id="recommendations"></p>
-                        </div>
-                    </div>
-
-                    <button class="btn btn--secondary btn--full-width glass-button" id="try-another-btn">Analyze Another Product</button>
-                </div>
-            </div>
-        </div>
+    <section id="about">
+      <h3>About GreenScore</h3>
+      <p>GreenScore offers a lightweight demo of sustainability scoring. It does not store your images.</p>
     </section>
+  </main>
 
-    <!-- How It Works -->
-    <section id="how-it-works" class="how-it-works tech-organic">
-        <div class="container">
-            <h2 class="section-title glow-text">AI + Earth Intelligence</h2>
-            <p class="section-subtitle">Our neural networks process environmental data through 8 sustainability dimensions</p>
+  <footer class="footer">
+    <p>&copy; 2024 GreenScore</p>
+  </footer>
 
-            <div class="steps-grid">
-                <div class="step-card floating-card glassmorphism-card">
-                    <div class="step-icon-container">
-                        <span class="step-icon neural-pulse">📸</span>
-                        <div class="tech-rings"></div>
-                    </div>
-                    <h3>1. Image Capture</h3>
-                    <p>Advanced computer vision algorithms analyze product characteristics and materials</p>
-                </div>
-                <div class="step-card floating-card glassmorphism-card">
-                    <div class="step-icon-container">
-                        <span class="step-icon neural-pulse">🤖</span>
-                        <div class="tech-rings"></div>
-                    </div>
-                    <h3>2. AI Processing</h3>
-                    <p>Machine learning models cross-reference environmental databases and lifecycle assessments</p>
-                </div>
-                <div class="step-card floating-card glassmorphism-card">
-                    <div class="step-icon-container">
-                        <span class="step-icon neural-pulse">🌱</span>
-                        <div class="tech-rings"></div>
-                    </div>
-                    <h3>3. Green Intelligence</h3>
-                    <p>Actionable sustainability insights delivered with confidence scores and recommendations</p>
-                </div>
-            </div>
-
-            <div class="metrics-section">
-                <h3 class="glow-text">Neural Network Evaluation Matrix</h3>
-                <div class="metrics-grid organic-grid" id="metrics-grid"></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ Section -->
-    <section id="faq" class="faq-section">
-        <div class="container">
-            <h2 class="section-title glow-text">Intelligence Nexus</h2>
-            <div class="faq-list" id="faq-list"></div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="about-section tech-organic">
-        <div class="container">
-            <div class="about-content">
-                <h2 class="section-title glow-text">Symbiosis: AI × Earth</h2>
-                <p class="about-text">At the intersection of artificial intelligence and environmental consciousness, GreenScore represents the next evolution of sustainable decision-making. Our neural networks don't just process data—they understand the delicate balance between technology and nature.</p>
-                
-                <div class="mission-stats organic-grid">
-                    <div class="mission-stat glassmorphism-card floating-card">
-                        <div class="stat-icon">🧠</div>
-                        <h3>Neural Innovation</h3>
-                        <p>Advanced AI algorithms trained on millions of sustainability data points to provide unprecedented accuracy in environmental impact assessment.</p>
-                    </div>
-                    <div class="mission-stat glassmorphism-card floating-card">
-                        <div class="stat-icon">🌍</div>
-                        <h3>Planetary Intelligence</h3>
-                        <p>Our models continuously learn from global environmental data, creating a living intelligence that evolves with our planet's needs.</p>
-                    </div>
-                </div>
-
-                <div class="team-section glassmorphism-card">
-                    <div class="team-visual">
-                        <div class="dna-helix"></div>
-                    </div>
-                    <h3>Conscious Technology</h3>
-                    <p>Built by a collective of AI researchers, environmental scientists, and sustainability advocates who believe technology should serve the Earth, not dominate it.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact-section">
-        <div class="container">
-            <h2 class="section-title glow-text">Connect with the Network</h2>
-            <div class="contact-content">
-                <div class="contact-info glassmorphism-card">
-                    <h3>Join the AI-Earth Alliance</h3>
-                    <p>Be part of the movement where artificial intelligence serves environmental intelligence.</p>
-                    
-                    <div class="contact-methods">
-                        <div class="contact-method">
-                            <span class="contact-icon tech-glow">📧</span>
-                            <span>intelligence@greenscore.ai</span>
-                        </div>
-                        <div class="contact-method">
-                            <span class="contact-icon tech-glow">🤝</span>
-                            <span>partnerships@greenscore.ai</span>
-                        </div>
-                    </div>
-                </div>
-
-                <form class="contact-form glassmorphism-card" id="contact-form">
-                    <div class="form-group">
-                        <label class="form-label" for="name">Name</label>
-                        <input type="text" class="form-control glass-input" id="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label" for="email">Email</label>
-                        <input type="email" class="form-control glass-input" id="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label" for="subject">Subject</label>
-                        <select class="form-control glass-input" id="subject" required>
-                            <option value="">Select neural pathway...</option>
-                            <option value="feedback">System Feedback</option>
-                            <option value="partnership">Alliance Partnership</option>
-                            <option value="support">Technical Support</option>
-                            <option value="research">Research Collaboration</option>
-                            <option value="other">Other Intelligence</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label" for="message">Message</label>
-                        <textarea class="form-control glass-input" id="message" rows="5" required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn--primary btn--full-width glow-button pulse-button">Transmit Message</button>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer tech-footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <h3 class="glow-text">🤖🌱 GreenScore AI</h3>
-                    <p>Where artificial intelligence meets environmental consciousness</p>
-                </div>
-                <div class="footer-links">
-                    <a href="#home">Neural Home</a>
-                    <a href="#how-it-works">AI Process</a>
-                    <a href="#faq">Intelligence FAQ</a>
-                    <a href="#about">Earth AI</a>
-                    <a href="#contact">Network</a>
-                </div>
-                <div class="footer-social">
-                    <p>Share your AI insights:</p>
-                    <div class="social-buttons">
-                        <button class="social-btn glow-button" id="share-twitter">Neural Tweet</button>
-                        <button class="social-btn glow-button" id="share-facebook">Earth Share</button>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 GreenScore AI. Synthesizing intelligence with 🌍 for planetary harmony.</p>
-            </div>
-        </div>
-    </footer>
-
-    <script src="app.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
