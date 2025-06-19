@@ -49,3 +49,90 @@ body {
   text-align: center;
   background: #e4f2e7;
 }
+
+.button {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background: #56c569;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+#animation-area {
+  position: relative;
+  height: 80px;
+  margin: 1rem 0;
+}
+
+#stick-figure {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 20px;
+  height: 60px;
+}
+
+#stick-figure div {
+  position: absolute;
+  background: #0a0;
+}
+
+#stick-figure .head {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  left: 5px;
+}
+
+#stick-figure .body {
+  width: 2px;
+  height: 25px;
+  top: 10px;
+  left: 9px;
+}
+
+#stick-figure .arm.left {
+  width: 15px;
+  height: 2px;
+  top: 15px;
+  left: -5px;
+  transform-origin: left center;
+  transform: rotate(-45deg);
+}
+
+#stick-figure .arm.right {
+  width: 15px;
+  height: 2px;
+  top: 15px;
+  left: 10px;
+  transform-origin: left center;
+  transform: rotate(45deg);
+}
+
+#stick-figure .leg.left {
+  width: 15px;
+  height: 2px;
+  top: 35px;
+  left: -2px;
+  transform-origin: left center;
+  transform: rotate(45deg);
+}
+
+#stick-figure .leg.right {
+  width: 15px;
+  height: 2px;
+  top: 35px;
+  left: 9px;
+  transform-origin: left center;
+  transform: rotate(-45deg);
+}
+
+.walk {
+  animation: walk 3s linear forwards;
+}
+
+@keyframes walk {
+  from { transform: translateX(0); }
+  to { transform: translateX(200px); }
+}
