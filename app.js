@@ -26,8 +26,8 @@ document.getElementById('score-btn').addEventListener('click', async () => {
           'Authorization': `Bearer ${apiKeyInput.value.trim()}`
         },
         body: JSON.stringify({
-          // gpt-4-vision-preview was deprecated; use gpt-4o for vision
-          model: 'gpt-4o',
+          // using gpt mini
+          model: 'gpt-4o-mini',
           messages: [
             {
               role: 'user',
