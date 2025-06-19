@@ -32,9 +32,7 @@ document.getElementById('score-btn').addEventListener('click', async () => {
             {
               role: 'user',
               content: [
-                { type: 'text', text: '
-                  
-                  
+                { type: 'text', text: `
                   Please analyze the sustainability of this product based on the image provided. Evaluate the following factors and make assumptions if no additional information is available:
 
 Materials: Identify the type of materials used (e.g., wood, metal, plastic, fabric). Are these materials renewable, recycled, or certified (e.g., FSC, eco-labels)?
@@ -48,9 +46,7 @@ Assumption: If no finishing details are visible, assume the product uses typical
 End of Life: Does the product seem recyclable or biodegradable at the end of its life based on its material and design?
 Assumption: If end-of-life information is not available, assume that the product’s disposal follows typical industry standards for the materials visible.
 GreenScore: Provide an estimated GreenScore (0-10) based on these factors, derived from the image analysis. Include a brief rationale for the score, making any necessary assumptions if information is missing.
-                  
-                  
-                  ' },
+                  ` },
                 { type: 'image_url', image_url: { url: `data:${file.type};base64,${base64}` } }
               ]
             }
