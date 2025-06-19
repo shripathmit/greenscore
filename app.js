@@ -40,7 +40,11 @@ document.getElementById('score-btn').addEventListener('click', async () => {
         })
       });
       const data = await resp.json();
-      result.textContent = data.choices?.[0]?.message?.content || 'No result';
+      if (!resp.ok) {
+        result.textContent = data.error?.message || 'Error contacting OpenAI API.';
+      } else {
+        result.textContent = data.choices?.[0]?.message?.content || 'No result';
+      }
     } catch (err) {
       console.error(err);
       result.textContent = 'Error contacting OpenAI API.';
