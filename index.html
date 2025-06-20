@@ -3,43 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GreenScore</title>
-  <link rel="stylesheet" href="style.css">
+  <title>EcoSnap</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body>
-  <header class="header">
-    <h1>GreenScore</h1>
-    <nav>
-      <a href="#home">Home</a>
-      <a href="#score">Score</a>
-      <a href="#about">About</a>
-      <a href="green_agent.html">Green Agent</a>
-    </nav>
-  </header>
+<body class="bg-white">
+  <div id="root"></div>
 
-  <main id="home">
-    <section class="hero">
-      <h2>Simple sustainability scoring</h2>
-      <p>Upload a product photo to estimate its environmental impact.</p>
-      <div class="scoring" id="score">
-        <input type="file" id="image-input" accept="image/*">
-        <input type="text" id="api-key" placeholder="OpenAI API Key">
-        <button id="score-btn">Score product</button>
-        <p id="result"></p>
-        <a href="green_agent.html" class="button">Try Green Agent</a>
-      </div>
-    </section>
-
-    <section id="about">
-      <h3>About GreenScore</h3>
-      <p>GreenScore offers a lightweight demo of sustainability scoring. It does not store your images.</p>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <p>&copy; 2024 GreenScore</p>
-  </footer>
-
-  <script src="app.js"></script>
+  <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel" src="landing-page.js"></script>
+  <script type="text/babel">
+    ReactDOM.render(<LandingPage />, document.getElementById('root'));
+  </script>
 </body>
 </html>
