@@ -1,6 +1,8 @@
-import React, { useState } from "react";
-
-export default function LandingPage() {
+// React is loaded globally via a script tag in index.html. Using the global
+// object here avoids module syntax which isn't supported by the in-browser
+// Babel transform.
+const { useState } = React;
+function LandingPage() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [imagePreview, setImagePreview] = useState(null);
   const [imageFile, setImageFile] = useState(null);
