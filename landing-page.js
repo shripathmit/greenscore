@@ -9,6 +9,17 @@ function LandingPage() {
   const [apiKey, setApiKey] = useState("");
   const [result, setResult] = useState("");
 
+  // Navigation links used in the header
+  const navLinks = [
+    { text: "Home", href: "#" },
+    { text: "About Us", href: "#" },
+    { text: "Why", href: "#" },
+    { text: "Blog", href: "#" },
+    { text: "Green Agent", href: "green_agent.html" },
+  ];
+  // Sum data for headers: total number of navigation sections
+  const headerCount = navLinks.length;
+
   const handleSnap = (event) => {
     const file = event.target.files[0];
     if (file) {
@@ -95,20 +106,28 @@ GreenScore: Provide an estimated GreenScore (0-10) based on these factors, deriv
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
           </svg>
         </button>
-        <nav className="hidden md:flex gap-6 text-sm font-medium">
-          <a href="#" className="hover:text-green-600">Home</a>
-          <a href="#" className="hover:text-green-600">About Us</a>
-          <a href="#" className="hover:text-green-600">Why</a>
-          <a href="green_agent.html" className="hover:text-green-600">Green Agent</a>
+        <nav className="hidden md:flex gap-6 text-sm font-medium items-center">
+          {navLinks.map((link) => (
+            <a key={link.text} href={link.href} className="hover:text-green-600">
+              {link.text}
+            </a>
+          ))}
+          <span className="ml-4 text-xs text-gray-500">({headerCount})</span>
         </nav>
       </header>
 
       {menuOpen && (
         <div className="md:hidden px-6 pb-4 bg-white shadow-sm">
-          <a href="#" className="block py-2 text-sm hover:text-green-600">Home</a>
-          <a href="#" className="block py-2 text-sm hover:text-green-600">About Us</a>
-          <a href="#" className="block py-2 text-sm hover:text-green-600">Why</a>
-          <a href="green_agent.html" className="block py-2 text-sm hover:text-green-600">Green Agent</a>
+          {navLinks.map((link) => (
+            <a
+              key={link.text}
+              href={link.href}
+              className="block py-2 text-sm hover:text-green-600"
+            >
+              {link.text}
+            </a>
+          ))}
+          <span className="block pt-2 text-xs text-gray-500">({headerCount})</span>
         </div>
       )}
 
