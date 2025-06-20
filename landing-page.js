@@ -11,10 +11,10 @@ function LandingPage() {
 
   // Navigation links used in the header
   const navLinks = [
-    { text: "Home", href: "#" },
-    { text: "About Us", href: "#" },
-    { text: "Why", href: "#" },
-    { text: "Blog", href: "#" },
+    { text: "Home", href: "#home" },
+    { text: "About Us", href: "#about" },
+    { text: "Why", href: "#why" },
+    { text: "Blog", href: "#blog" },
     { text: "Green Agent", href: "green_agent.html" },
   ];
   // Sum data for headers: total number of navigation sections
@@ -132,7 +132,7 @@ GreenScore: Provide an estimated GreenScore (0-10) based on these factors, deriv
       )}
 
       {/* Hero Section */}
-      <section className="w-full bg-cover bg-center py-16 px-8 text-center text-white" style={{ backgroundImage: "url('https://via.placeholder.com/800x600?text=Green+Earth+AI+Choices')" }}>
+      <section id="home" className="w-full bg-cover bg-center py-16 px-8 text-center text-white" style={{ backgroundImage: "url('https://via.placeholder.com/800x600?text=Green+Earth+AI+Choices')" }}>
         <div className="max-w-md mx-auto bg-black bg-opacity-50 p-6 rounded-xl">
           <h2 className="text-2xl md:text-3xl font-bold mb-4">Make every choice count — for the planet and for the future</h2>
           <p className="text-sm text-gray-300 mb-6">Use the power of AI to understand the green impact of your purchases</p>
@@ -169,6 +169,39 @@ GreenScore: Provide an estimated GreenScore (0-10) based on these factors, deriv
               {result && <p className="text-sm text-white whitespace-pre-wrap mt-4">{result}</p>}
             </>
           )}
+        </div>
+      </section>
+
+      {/* About Us Section */}
+      <section id="about" className="w-full bg-green-50 py-16 px-8">
+        <div className="max-w-4xl mx-auto text-center">
+          <h3 className="text-2xl font-bold text-green-800 mb-4">About Us</h3>
+          <p className="text-gray-700 text-sm md:text-base">EcoSnap is a passionate initiative driven by a mission to empower every consumer to make planet-friendly choices. We combine the power of artificial intelligence with sustainability science to bring you simple, transparent, and real-time eco insights—right from your camera.</p>
+        </div>
+      </section>
+
+      {/* Why Section */}
+      <section id="why" className="w-full bg-white py-16 px-8">
+        <div className="max-w-4xl mx-auto text-center">
+          <h3 className="text-2xl font-bold text-green-800 mb-4">Why EcoSnap?</h3>
+          <p className="text-gray-700 text-sm md:text-base">Because we believe sustainable decisions should be effortless. Whether you're in the aisle, online, or on the move, EcoSnap is your sidekick to greener living—powered by intelligence, not guesswork.</p>
+        </div>
+      </section>
+
+      {/* Blog Section */}
+      <section id="blog" className="w-full bg-gray-50 py-16 px-8">
+        <div className="max-w-5xl mx-auto text-center">
+          <h3 className="text-2xl font-bold text-green-800 mb-10">Latest from Our Blog</h3>
+          <div className="grid md:grid-cols-3 gap-6">
+            {[1, 2, 3].map((i) => (
+              <div key={i} className="bg-white shadow rounded-lg p-5 text-left">
+                <div className="text-sm text-gray-500 mb-2">June {i * 5}, 2025</div>
+                <h4 className="text-lg font-semibold text-gray-800 mb-2">Blog Title {i}</h4>
+                <p className="text-sm text-gray-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae justo nec quam fermentum ullamcorper.</p>
+                <a href="#" className="text-green-600 text-sm mt-2 inline-block hover:underline">Read more →</a>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
