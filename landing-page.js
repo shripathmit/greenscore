@@ -2,13 +2,31 @@
 // object here avoids module syntax which isn't supported by the in-browser
 // Babel transform.
 const { useState } = React;
-const MOCK_RESULT = `GreenScore: 8/10\nThis is a mock product description used for testing.`;
+const MOCK_RESULT = `GreenScore: 8/10\nThis sample score assumes the product is made from mostly renewable materials with minimal packaging. Manufacturing impact is moderate, and the item appears durable and recyclable.`;
+
+function parseScore(text) {
+  const match = text.match(/GreenScore:\s*(\d+(?:\.\d+)?)\/10/);
+  return match ? parseFloat(match[1]) : null;
+}
+
+function ScoreMeter({ score }) {
+  if (score == null) return null;
+  const angle = (score / 10) * 180;
+  return (
+    <svg width="200" height="120" className="mx-auto my-4">
+      <path d="M20 100 A80 80 0 0 1 180 100" fill="none" stroke="#e5e5e5" strokeWidth="20" />
+      <line x1="100" y1="100" x2="100" y2="20" stroke="#2f855a" strokeWidth="4" transform={`rotate(${angle} 100 100)`} />
+      <text x="100" y="115" textAnchor="middle" fill="#2f855a" fontSize="16">{score}/10</text>
+    </svg>
+  );
+}
 function LandingPage() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [imagePreview, setImagePreview] = useState(null);
   const [imageFile, setImageFile] = useState(null);
   const [apiKey, setApiKey] = useState("");
   const [result, setResult] = useState("");
+  const [score, setScore] = useState(null);
 
   // Navigation links used in the header
   const navLinks = [
@@ -39,6 +57,7 @@ function LandingPage() {
     if (!apiKey.trim()) {
       // Show a mocked result when no API key is provided
       setResult(MOCK_RESULT);
+      setScore(parseScore(MOCK_RESULT));
       return;
     }
 
@@ -84,8 +103,11 @@ GreenScore: Provide an estimated GreenScore (0-10) based on these factors, deriv
         const data = await resp.json();
         if (!resp.ok) {
           setResult(data.error?.message || 'Error contacting OpenAI API.');
+          setScore(null);
         } else {
-          setResult(data.choices?.[0]?.message?.content || 'No result');
+          const text = data.choices?.[0]?.message?.content || 'No result';
+          setResult(text);
+          setScore(parseScore(text));
         }
       } catch (err) {
         console.error(err);
@@ -168,7 +190,12 @@ GreenScore: Provide an estimated GreenScore (0-10) based on these factors, deriv
               <button onClick={handleScore} className="bg-white w-full text-green-700 px-6 py-2 rounded-full text-sm font-medium hover:bg-gray-200">
                 Score Me
               </button>
-              {result && <p className="text-sm text-white whitespace-pre-wrap mt-4">{result}</p>}
+              {result && (
+                <>
+                  <p className="text-sm text-white whitespace-pre-wrap mt-4">{result}</p>
+                  <ScoreMeter score={score} />
+                </>
+              )}
             </>
           )}
         </div>

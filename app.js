@@ -1,4 +1,4 @@
-const MOCK_RESULT = `GreenScore: 8/10\nThis is a mock product description used for testing.`;
+const MOCK_RESULT = `GreenScore: 8/10\nThis sample score assumes the product is made from mostly renewable materials with minimal packaging. Manufacturing impact is moderate, and the item appears durable and recyclable.`;
 
 document.getElementById('score-btn').addEventListener('click', async () => {
   const input = document.getElementById('image-input');
