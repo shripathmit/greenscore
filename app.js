@@ -1,3 +1,5 @@
+const MOCK_RESULT = `GreenScore: 8/10\nThis is a mock product description used for testing.`;
+
 document.getElementById('score-btn').addEventListener('click', async () => {
   const input = document.getElementById('image-input');
   const apiKeyInput = document.getElementById('api-key');
@@ -8,8 +10,9 @@ document.getElementById('score-btn').addEventListener('click', async () => {
     return;
   }
 
-  if (!apiKeyInput.value) {
-    result.textContent = 'Please enter your OpenAI API key.';
+  if (!apiKeyInput.value.trim()) {
+    // When no API key is provided, show a mocked response for easy testing
+    result.textContent = MOCK_RESULT;
     return;
   }
 

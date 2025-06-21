@@ -2,6 +2,7 @@
 // object here avoids module syntax which isn't supported by the in-browser
 // Babel transform.
 const { useState } = React;
+const MOCK_RESULT = `GreenScore: 8/10\nThis is a mock product description used for testing.`;
 function LandingPage() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [imagePreview, setImagePreview] = useState(null);
@@ -35,8 +36,9 @@ function LandingPage() {
       setResult("Please select an image first.");
       return;
     }
-    if (!apiKey) {
-      setResult("Please enter your OpenAI API key.");
+    if (!apiKey.trim()) {
+      // Show a mocked result when no API key is provided
+      setResult(MOCK_RESULT);
       return;
     }
 
