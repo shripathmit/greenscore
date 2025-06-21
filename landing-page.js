@@ -12,10 +12,10 @@ function LandingPage() {
   // Navigation links used in the header
   const navLinks = [
     { text: "Home", href: "#home" },
-    { text: "About Us", href: "#about" },
-    { text: "Why", href: "#why" },
-    { text: "Blog", href: "#blog" },
-    { text: "Green Agent", href: "green_agent.html" },
+    { text: "About Us", href: "#bottom" },
+    { text: "Why", href: "#bottom" },
+    { text: "Blog", href: "#bottom" },
+    { text: "Green Agent", href: "#bottom" },
   ];
   // Sum data for headers: total number of navigation sections
   const headerCount = navLinks.length;
@@ -227,7 +227,7 @@ GreenScore: Provide an estimated GreenScore (0-10) based on these factors, deriv
       </section>
 
       {/* Simplified Footer */}
-      <footer className="w-full bg-gray-900 text-white py-8 px-6 text-center">
+      <footer id="bottom" className="w-full bg-gray-900 text-white py-8 px-6 text-center">
         <div className="flex flex-col items-center space-y-4">
           <div className="flex items-center gap-2">
             <div className="w-5 h-5 bg-green-600 rounded-full"></div>
