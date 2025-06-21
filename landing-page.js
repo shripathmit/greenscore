@@ -12,10 +12,10 @@ function LandingPage() {
   // Navigation links used in the header
   const navLinks = [
     { text: "Home", href: "#home" },
-    { text: "About Us", href: "#bottom" },
-    { text: "Why", href: "#bottom" },
-    { text: "Blog", href: "#bottom" },
-    { text: "Green Agent", href: "#bottom" },
+    { text: "About Us", href: "#about" },
+    { text: "Why", href: "#why" },
+    { text: "Blog", href: "#blog" },
+    { text: "Green Agent", href: "green_agent.html" },
   ];
   // Sum data for headers: total number of navigation sections
   const headerCount = navLinks.length;
