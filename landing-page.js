@@ -172,7 +172,28 @@ GreenScore: Provide an estimated GreenScore (0-10) based on these factors, deriv
         </div>
       </section>
 
-      {/* About Us Section */}
+      {/* Feature Highlights */}
+      <section className="w-full bg-gray-50 py-16 px-8">
+        <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-8">
+          <div className="bg-white rounded-xl shadow p-6 text-center hover:shadow-md">
+            <div className="w-12 h-12 bg-green-100 rounded-full mx-auto mb-4"></div>
+            <h4 className="text-lg font-semibold mb-2">Why EcoSnap?</h4>
+            <p className="text-gray-600 text-sm">EcoSnap gives you instant green scoring with transparent AI so you can buy better without the guesswork.</p>
+          </div>
+          <div className="bg-white rounded-xl shadow p-6 text-center hover:shadow-md">
+            <div className="w-12 h-12 bg-green-100 rounded-full mx-auto mb-4"></div>
+            <h4 className="text-lg font-semibold mb-2">Who It's For</h4>
+            <p className="text-gray-600 text-sm">From eco-conscious shoppers to sustainability-focused brands, EcoSnap is built for anyone making mindful decisions.</p>
+          </div>
+          <div className="bg-white rounded-xl shadow p-6 text-center hover:shadow-md">
+            <div className="w-12 h-12 bg-green-100 rounded-full mx-auto mb-4"></div>
+            <h4 className="text-lg font-semibold mb-2">Our AI Advantage</h4>
+            <p className="text-gray-600 text-sm">Backed by data and constantly learning, EcoSnap’s AI delivers fast, reliable impact scores tailored to your choices.</p>
+          </div>
+        </div>
+      </section>
+
+       {/* About Us Section */}
       <section id="about" className="w-full bg-green-50 py-16 px-8">
         <div className="max-w-4xl mx-auto text-center">
           <h3 className="text-2xl font-bold text-green-800 mb-4">About Us</h3>
@@ -201,27 +222,6 @@ GreenScore: Provide an estimated GreenScore (0-10) based on these factors, deriv
                 <a href="#" className="text-green-600 text-sm mt-2 inline-block hover:underline">Read more →</a>
               </div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Feature Highlights */}
-      <section className="w-full bg-gray-50 py-16 px-8">
-        <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-8">
-          <div className="bg-white rounded-xl shadow p-6 text-center hover:shadow-md">
-            <div className="w-12 h-12 bg-green-100 rounded-full mx-auto mb-4"></div>
-            <h4 className="text-lg font-semibold mb-2">Why EcoSnap?</h4>
-            <p className="text-gray-600 text-sm">EcoSnap gives you instant green scoring with transparent AI so you can buy better without the guesswork.</p>
-          </div>
-          <div className="bg-white rounded-xl shadow p-6 text-center hover:shadow-md">
-            <div className="w-12 h-12 bg-green-100 rounded-full mx-auto mb-4"></div>
-            <h4 className="text-lg font-semibold mb-2">Who It's For</h4>
-            <p className="text-gray-600 text-sm">From eco-conscious shoppers to sustainability-focused brands, EcoSnap is built for anyone making mindful decisions.</p>
-          </div>
-          <div className="bg-white rounded-xl shadow p-6 text-center hover:shadow-md">
-            <div className="w-12 h-12 bg-green-100 rounded-full mx-auto mb-4"></div>
-            <h4 className="text-lg font-semibold mb-2">Our AI Advantage</h4>
-            <p className="text-gray-600 text-sm">Backed by data and constantly learning, EcoSnap’s AI delivers fast, reliable impact scores tailored to your choices.</p>
           </div>
         </div>
       </section>
