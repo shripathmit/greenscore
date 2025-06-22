@@ -177,7 +177,10 @@ GreenScore: Provide an estimated GreenScore (0-10) based on these factors, deriv
       </section>
 
       {/* Feature Highlights */}
-      <section className="w-full bg-gray-50 py-16 px-8">
+      <section
+        className="w-full bg-gray-50 py-16 px-8 bg-cover bg-center"
+        style={{ backgroundImage: "url('assets/Background light sketch.png')" }}
+      >
         <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-8">
           <div className="bg-white rounded-xl shadow p-6 text-center hover:shadow-md">
             <div className="w-12 h-12 bg-green-100 rounded-full mx-auto mb-4"></div>
