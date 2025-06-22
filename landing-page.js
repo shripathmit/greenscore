@@ -4,102 +4,12 @@
 const { useState } = React;
 const MOCK_RESULT = `GreenScore: 8/10\nThis sample score assumes the product is made from mostly renewable materials with minimal packaging. Manufacturing impact is moderate, and the item appears durable and recyclable.`;
 
-// Helper to extract a numeric score from a text string
-function extractScore(text) {
-  const match = text.match(/GreenScore\s*[:\-]?\s*(\d+(?:\.\d+)?)/i);
-  if (match) {
-    const val = parseFloat(match[1]);
-    if (!isNaN(val)) return val;
-  }
-  return null;
-}
-
-// Component rendering a hand-drawn style gauge
-function ScoreGauge({ score }) {
-  const segments = [
-    { label: 'VERY POOR', color: '#e63946' },
-    { label: 'POOR', color: '#ff5722' },
-    { label: 'FAIR', color: '#ff9800' },
-    { label: 'GOOD', color: '#ffeb3b' },
-    { label: 'GREAT', color: '#9acd32' },
-    { label: 'EXCELLENT', color: '#006400' }
-  ];
-
-  const radius = 80;
-  const inner = 60;
-  const cx = 100;
-  const cy = 100;
-
-  function polarToCartesian(r, angle) {
-    const a = (Math.PI / 180) * angle;
-    return {
-      x: cx + r * Math.cos(a),
-      y: cy + r * Math.sin(a)
-    };
-  }
-
-  function arcPath(start, end) {
-    const startOuter = polarToCartesian(radius, start);
-    const endOuter = polarToCartesian(radius, end);
-    const startInner = polarToCartesian(inner, end);
-    const endInner = polarToCartesian(inner, start);
-    const large = end - start > 180 ? 1 : 0;
-    return `M ${startOuter.x} ${startOuter.y}
-            A ${radius} ${radius} 0 ${large} 0 ${endOuter.x} ${endOuter.y}
-            L ${startInner.x} ${startInner.y}
-            A ${inner} ${inner} 0 ${large} 1 ${endInner.x} ${endInner.y}
-            Z`;
-  }
-
-  const needleAngle = 180 - Math.max(0, Math.min(10, score || 0)) * 18;
-  const needleEnd = polarToCartesian(inner - 5, needleAngle);
-
-  return (
-    <div className="offwhite p-4 rounded-lg text-center hand-drawn">
-      <div className="text-green-700 text-xl mb-1">Product Analysis</div>
-      <div className="text-green-700 text-lg mb-2">Green Score</div>
-      <svg width="200" height="110" viewBox="0 0 200 110">
-        {segments.map((seg, i) => {
-          const start = 180 - i * 30 - 30;
-          const end = 180 - i * 30;
-          const mid = start + 15;
-          const labelPos = polarToCartesian((radius + inner) / 2, mid);
-          return (
-            <g key={seg.label}>
-              <path d={arcPath(start, end)} fill={seg.color} stroke="none" />
-              <text
-                x={labelPos.x}
-                y={labelPos.y}
-                fontSize="8"
-                textAnchor="middle"
-                dominantBaseline="middle"
-                fill="#333"
-              >
-                {seg.label}
-              </text>
-            </g>
-          );
-        })}
-        <line
-          x1={cx}
-          y1={cy}
-          x2={needleEnd.x}
-          y2={needleEnd.y}
-          stroke="black"
-          strokeWidth="2"
-        />
-        <circle cx={cx} cy={cy} r="3" fill="black" />
-      </svg>
-    </div>
-  );
-}
 function LandingPage() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [imagePreview, setImagePreview] = useState(null);
   const [imageFile, setImageFile] = useState(null);
   const [apiKey, setApiKey] = useState("");
   const [result, setResult] = useState("");
-  const [scoreValue, setScoreValue] = useState(null);
 
   // Navigation links used in the header
   const navLinks = [
@@ -125,13 +35,11 @@ function LandingPage() {
   const handleScore = () => {
     if (!imageFile) {
       setResult("Please select an image first.");
-      setScoreValue(null);
       return;
     }
     if (!apiKey.trim()) {
       // Show a mocked result when no API key is provided
       setResult(MOCK_RESULT);
-      setScoreValue(extractScore(MOCK_RESULT));
       return;
     }
 
@@ -174,22 +82,19 @@ GreenScore: Provide an estimated GreenScore (0-10) based on these factors, deriv
             max_tokens: 500
           })
         });
-        const data = await resp.json();
-        if (!resp.ok) {
-          setResult(data.error?.message || 'Error contacting OpenAI API.');
-          setScoreValue(null);
-        } else {
-          const text = data.choices?.[0]?.message?.content || 'No result';
-          setResult(text);
-          setScoreValue(extractScore(text));
+          const data = await resp.json();
+          if (!resp.ok) {
+            setResult(data.error?.message || 'Error contacting OpenAI API.');
+          } else {
+            const text = data.choices?.[0]?.message?.content || 'No result';
+            setResult(text);
+          }
+        } catch (err) {
+          console.error(err);
+          setResult('Error contacting OpenAI API.');
         }
-      } catch (err) {
-        console.error(err);
-        setResult('Error contacting OpenAI API.');
-        setScoreValue(null);
-      }
-    };
-    reader.readAsDataURL(imageFile);
+      };
+      reader.readAsDataURL(imageFile);
   };
 
   return (
@@ -266,11 +171,6 @@ GreenScore: Provide an estimated GreenScore (0-10) based on these factors, deriv
                 Score Me
               </button>
               {result && <p className="text-sm text-white whitespace-pre-wrap mt-4">{result}</p>}
-              {scoreValue !== null && (
-                <div className="mt-4 flex justify-center">
-                  <ScoreGauge score={scoreValue} />
-                </div>
-              )}
             </>
           )}
         </div>
