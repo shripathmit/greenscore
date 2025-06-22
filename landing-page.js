@@ -102,7 +102,7 @@ GreenScore: Provide an estimated GreenScore (0-10) based on these factors, deriv
       {/* Header */}
       <header className="w-full px-6 py-4 flex justify-between items-center shadow-sm md:px-8">
         <div className="flex items-center gap-2">
-          <div className="w-6 h-6 bg-green-600 rounded-full"></div>
+          <img src="assets/Camera%20log.png" alt="EcoSnap logo" className="w-6 h-6" />
           <h1 className="text-xl font-bold text-green-600">EcoSnap</h1>
         </div>
         <button className="md:hidden text-gray-700 focus:outline-none" onClick={() => setMenuOpen(!menuOpen)}>
