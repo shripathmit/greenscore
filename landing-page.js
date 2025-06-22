@@ -136,7 +136,7 @@ GreenScore: Provide an estimated GreenScore (0-10) based on these factors, deriv
       )}
 
       {/* Hero Section */}
-      <section id="home" className="w-full bg-cover bg-center py-16 px-8 text-center text-white" style={{ backgroundImage: "url('https://via.placeholder.com/800x600?text=Green+Earth+AI+Choices')" }}>
+      <section id="home" className="w-full bg-cover bg-center py-16 px-8 text-center text-white" style={{ backgroundImage: "url('assets/Camera background with green hue.png')" }}>
         <div className="max-w-md mx-auto bg-black bg-opacity-50 p-6 rounded-xl">
           <h2 className="text-2xl md:text-3xl font-bold mb-4">Make every choice count — for the planet and for the future</h2>
           <p className="text-sm text-gray-300 mb-6">Use the power of AI to understand the green impact of your purchases</p>
