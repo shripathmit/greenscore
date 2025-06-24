@@ -1182,3 +1182,25 @@ select.form-control {
   outline: var(--focus-outline);
   outline-offset: 2px;
 }
+
+/* Top navigation header */
+.nav-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-16);
+  background-color: var(--color-surface);
+}
+
+.nav-header a {
+  margin-left: var(--space-16);
+  text-decoration: none;
+  color: var(--color-text);
+  font-weight: var(--font-weight-medium);
+}
+
+.nav-header .logo {
+  margin-left: 0;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary);
+}

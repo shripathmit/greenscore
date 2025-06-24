@@ -220,16 +220,25 @@ document.addEventListener('DOMContentLoaded', function() {
     window.sustainabilityDashboard = dashboard;
     const stored = sessionStorage.getItem('analysisResult');
     if (stored) {
+        const parsed = parseAnalysisText(stored);
         const rationale = document.querySelector('.score-rationale');
-        if (rationale) rationale.textContent = stored;
-        const match = stored.match(/GreenScore\s*:?\s*(\d+)/i);
-        if (match) {
-            const score = parseInt(match[1]);
+        if (rationale) rationale.textContent = parsed.rationale || stored;
+        if (parsed.score) {
             const scoreNumber = document.querySelector('.score-number');
             const progress = document.querySelector('.score-section .progress-fill');
-            if (scoreNumber) scoreNumber.textContent = score;
-            if (progress) progress.setAttribute('data-score', score);
+            if (scoreNumber) scoreNumber.textContent = parsed.score;
+            if (progress) progress.setAttribute('data-score', parsed.score);
         }
+
+        const sections = ['materials','manufacturing','design','finishing','endoflife'];
+        sections.forEach(key => {
+            if (parsed[key]) {
+                const card = document.querySelector(`.analysis-card[data-section="${key}"] .card-content`);
+                if (card) {
+                    card.innerHTML = `<p>${parsed[key]}</p>`;
+                }
+            }
+        });
     }
     if ('performance' in window) {
         window.addEventListener('load', () => {
@@ -266,4 +275,57 @@ function announceToScreenReader(message) {
     announcement.textContent = message;
     document.body.appendChild(announcement);
     setTimeout(() => { document.body.removeChild(announcement); }, 1000);
+}
+
+function parseAnalysisText(text) {
+    const sections = {};
+    const lines = text.split(/\n+/);
+    let current = null;
+    lines.forEach(line => {
+        const trimmed = line.trim();
+        const lower = trimmed.toLowerCase();
+        if (!trimmed) return;
+        if (lower.startsWith('materials')) {
+            current = 'materials';
+            sections[current] = trimmed.replace(/^materials\s*:?\s*/i, '');
+            return;
+        }
+        if (lower.startsWith('manufacturing')) {
+            current = 'manufacturing';
+            sections[current] = trimmed.replace(/^manufacturing(?: process)?\s*:?\s*/i, '');
+            return;
+        }
+        if (lower.startsWith('design')) {
+            current = 'design';
+            sections[current] = trimmed.replace(/^design(?: and durability)?\s*:?\s*/i, '');
+            return;
+        }
+        if (lower.startsWith('finishing')) {
+            current = 'finishing';
+            sections[current] = trimmed.replace(/^finishing(?: and coatings)?\s*:?\s*/i, '');
+            return;
+        }
+        if (lower.startsWith('end of life')) {
+            current = 'endoflife';
+            sections[current] = trimmed.replace(/^end of life\s*:?\s*/i, '');
+            return;
+        }
+        if (lower.startsWith('greenscore')) {
+            const m = trimmed.match(/(\d+)/);
+            if (m) sections.score = parseInt(m[1]);
+            const rest = trimmed.replace(/^greenscore\s*:?\s*/i, '').replace(/\d+\s*(?:\/\s*\d+)?/, '').trim();
+            if (rest) sections.rationale = rest;
+            current = 'rationale';
+            return;
+        }
+        if (lower.startsWith('rationale')) {
+            current = 'rationale';
+            sections[current] = trimmed.replace(/^rationale\s*:?\s*/i, '');
+            return;
+        }
+        if (current) {
+            sections[current] = (sections[current] ? sections[current] + ' ' : '') + trimmed;
+        }
+    });
+    return sections;
 }
