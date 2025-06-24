@@ -1,0 +1,269 @@
+// Sustainability Dashboard Interactive Features
+
+class SustainabilityDashboard {
+    constructor() {
+        this.analysisCards = document.querySelectorAll('.analysis-card');
+        this.progressBars = document.querySelectorAll('.progress-fill, .score-bar-fill');
+        this.init();
+    }
+
+    init() {
+        this.setupCardInteractions();
+        this.animateProgressBars();
+        this.setupAccessibility();
+        setTimeout(() => {
+            this.animateScoreOnLoad();
+        }, 300);
+    }
+
+    setupCardInteractions() {
+        this.analysisCards.forEach(card => {
+            const expandBtn = card.querySelector('.expand-btn');
+            const cardHeader = card.querySelector('.card-header');
+            const toggleCard = (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                this.toggleCardExpansion(card);
+            };
+            if (expandBtn) {
+                expandBtn.addEventListener('click', toggleCard);
+            }
+            if (cardHeader) {
+                cardHeader.addEventListener('click', toggleCard);
+                cardHeader.style.cursor = 'pointer';
+            }
+            card.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    this.toggleCardExpansion(card);
+                }
+            });
+            card.setAttribute('tabindex', '0');
+        });
+    }
+
+    toggleCardExpansion(card) {
+        const isExpanded = card.classList.contains('expanded');
+        const content = card.querySelector('.card-content');
+        const expandBtn = card.querySelector('.expand-btn');
+
+        if (isExpanded) {
+            card.classList.remove('expanded');
+            content.style.maxHeight = '0';
+            content.style.opacity = '0';
+            content.style.paddingTop = '0';
+            content.style.paddingBottom = '0';
+            if (expandBtn) expandBtn.setAttribute('aria-expanded', 'false');
+        } else {
+            card.classList.add('expanded');
+            content.style.maxHeight = content.scrollHeight + 'px';
+            content.style.opacity = '1';
+            content.style.paddingTop = 'var(--space-20)';
+            content.style.paddingBottom = 'var(--space-20)';
+            if (expandBtn) expandBtn.setAttribute('aria-expanded', 'true');
+            this.analysisCards.forEach(other => {
+                if (other !== card && other.classList.contains('expanded')) {
+                    this.toggleCardExpansion(other);
+                }
+            });
+        }
+
+        if (!isExpanded) {
+            setTimeout(() => {
+                const rect = card.getBoundingClientRect();
+                const isFullyVisible = rect.top >= 0 && rect.bottom <= window.innerHeight;
+                if (!isFullyVisible) {
+                    card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            }, 100);
+        }
+    }
+
+    animateProgressBars() {
+        const observerOptions = { threshold: 0.3, rootMargin: '0px 0px -50px 0px' };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    this.animateProgressBar(entry.target);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+        this.progressBars.forEach(bar => observer.observe(bar));
+    }
+
+    animateProgressBar(progressBar) {
+        const score = progressBar.getAttribute('data-score');
+        if (!score) return;
+        const percentage = (parseInt(score) / 10) * 100;
+        progressBar.style.width = '0%';
+        requestAnimationFrame(() => {
+            progressBar.style.transition = 'width 1.5s cubic-bezier(0.16, 1, 0.3, 1)';
+            progressBar.style.width = percentage + '%';
+        });
+    }
+
+    animateScoreOnLoad() {
+        const mainScoreProgress = document.querySelector('.score-section .progress-fill');
+        if (mainScoreProgress) this.animateProgressBar(mainScoreProgress);
+        const sectionScoreBars = document.querySelectorAll('.score-bar-fill');
+        sectionScoreBars.forEach((bar, index) => {
+            setTimeout(() => this.animateProgressBar(bar), index * 200);
+        });
+    }
+
+    setupAccessibility() {
+        this.analysisCards.forEach((card, index) => {
+            const title = card.querySelector('h4')?.textContent || `Analysis section ${index + 1}`;
+            const expandBtn = card.querySelector('.expand-btn');
+            card.setAttribute('role', 'button');
+            card.setAttribute('aria-label', `Expand ${title} analysis`);
+            if (expandBtn) {
+                expandBtn.setAttribute('aria-expanded', 'false');
+                expandBtn.setAttribute('aria-label', `Toggle ${title} details`);
+            }
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Tab') {
+                this.handleTabNavigation(e);
+            }
+        });
+    }
+
+    handleTabNavigation(e) {
+        const focusableElements = document.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+        const focusableArray = Array.from(focusableElements);
+        const currentIndex = focusableArray.indexOf(document.activeElement);
+        if (e.shiftKey) {
+            if (currentIndex === 0) {
+                e.preventDefault();
+                focusableArray[focusableArray.length - 1].focus();
+            }
+        } else {
+            if (currentIndex === focusableArray.length - 1) {
+                e.preventDefault();
+                focusableArray[0].focus();
+            }
+        }
+    }
+
+    expandSection(sectionName) {
+        const card = document.querySelector(`[data-section="${sectionName}"]`);
+        if (card && !card.classList.contains('expanded')) {
+            this.toggleCardExpansion(card);
+        }
+    }
+
+    getAnalysisData() {
+        const data = { overallScore: 7, sections: {} };
+        this.analysisCards.forEach(card => {
+            const sectionName = card.getAttribute('data-section');
+            const scoreElement = card.querySelector('.score-value');
+            const isExpanded = card.classList.contains('expanded');
+            if (sectionName && scoreElement) {
+                data.sections[sectionName] = {
+                    score: parseInt(scoreElement.textContent),
+                    expanded: isExpanded
+                };
+            }
+        });
+        return data;
+    }
+}
+
+class UserExperienceEnhancements {
+    static addHoverEffects() {
+        const cards = document.querySelectorAll('.card');
+        cards.forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-2px)';
+            });
+            card.addEventListener('mouseleave', function() {
+                if (!this.classList.contains('expanded')) {
+                    this.style.transform = 'translateY(0)';
+                }
+            });
+        });
+    }
+
+    static addSmoothScrolling() {
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    }
+
+    static addLoadingAnimations() {
+        const cards = document.querySelectorAll('.analysis-card');
+        cards.forEach((card, index) => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            setTimeout(() => {
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            }, index * 100 + 500);
+        });
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    const dashboard = new SustainabilityDashboard();
+    UserExperienceEnhancements.addHoverEffects();
+    UserExperienceEnhancements.addSmoothScrolling();
+    UserExperienceEnhancements.addLoadingAnimations();
+    window.sustainabilityDashboard = dashboard;
+    const stored = sessionStorage.getItem('analysisResult');
+    if (stored) {
+        const rationale = document.querySelector('.score-rationale');
+        if (rationale) rationale.textContent = stored;
+        const match = stored.match(/GreenScore\s*:?\s*(\d+)/i);
+        if (match) {
+            const score = parseInt(match[1]);
+            const scoreNumber = document.querySelector('.score-number');
+            const progress = document.querySelector('.score-section .progress-fill');
+            if (scoreNumber) scoreNumber.textContent = score;
+            if (progress) progress.setAttribute('data-score', score);
+        }
+    }
+    if ('performance' in window) {
+        window.addEventListener('load', () => {
+            const loadTime = performance.now();
+            console.log(`Dashboard loaded in ${Math.round(loadTime)}ms`);
+        });
+    }
+});
+
+window.addEventListener('resize', function() {
+    clearTimeout(this.resizeTimeout);
+    this.resizeTimeout = setTimeout(() => {
+        const expandedCards = document.querySelectorAll('.analysis-card.expanded');
+        expandedCards.forEach(card => {
+            const content = card.querySelector('.card-content');
+            if (content) {
+                content.style.maxHeight = 'none';
+                const height = content.scrollHeight;
+                content.style.maxHeight = height + 'px';
+            }
+        });
+    }, 250);
+});
+
+window.addEventListener('error', function(e) {
+    console.error('Dashboard Error:', e.error);
+});
+
+function announceToScreenReader(message) {
+    const announcement = document.createElement('div');
+    announcement.setAttribute('aria-live', 'polite');
+    announcement.setAttribute('aria-atomic', 'true');
+    announcement.className = 'sr-only';
+    announcement.textContent = message;
+    document.body.appendChild(announcement);
+    setTimeout(() => { document.body.removeChild(announcement); }, 1000);
+}
