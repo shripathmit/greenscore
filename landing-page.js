@@ -29,6 +29,8 @@ function LandingPage() {
       const reader = new FileReader();
       reader.onloadend = () => setImagePreview(reader.result);
       reader.readAsDataURL(file);
+      const name = file.name ? file.name.replace(/\.[^/.]+$/, '') : 'Uploaded Product';
+      sessionStorage.setItem('productName', name);
     }
   };
 
