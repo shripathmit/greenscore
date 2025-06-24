@@ -37,9 +37,15 @@ function LandingPage() {
       setResult("Please select an image first.");
       return;
     }
+
+    const finalize = (text) => {
+      setResult(text);
+      sessionStorage.setItem('analysisResult', text);
+      window.location.href = 'analysis.html';
+    };
+
     if (!apiKey.trim()) {
-      // Show a mocked result when no API key is provided
-      setResult(MOCK_RESULT);
+      finalize(MOCK_RESULT);
       return;
     }
 
@@ -84,14 +90,14 @@ GreenScore: Provide an estimated GreenScore (0-10) based on these factors, deriv
         });
           const data = await resp.json();
           if (!resp.ok) {
-            setResult(data.error?.message || 'Error contacting OpenAI API.');
+            finalize(data.error?.message || 'Error contacting OpenAI API.');
           } else {
             const text = data.choices?.[0]?.message?.content || 'No result';
-            setResult(text);
+            finalize(text);
           }
         } catch (err) {
           console.error(err);
-          setResult('Error contacting OpenAI API.');
+          finalize('Error contacting OpenAI API.');
         }
       };
       reader.readAsDataURL(imageFile);
