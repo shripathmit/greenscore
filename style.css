@@ -1,9 +1,14 @@
 body {
   font-family: Arial, sans-serif;
   margin: 0;
-  background: url("assets/Camera background with green hue.png") no-repeat center center fixed;
+  background: url("assets/Main Background.png") no-repeat center center fixed;
   background-size: cover;
   color: #333;
+}
+
+section {
+  background: url("assets/Main Background.png") no-repeat center center fixed;
+  background-size: cover;
 }
 
 .header {

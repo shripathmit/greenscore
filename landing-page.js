@@ -136,7 +136,7 @@ GreenScore: Provide an estimated GreenScore (0-10) based on these factors, deriv
       )}
 
       {/* Hero Section */}
-      <section id="home" className="w-full bg-cover bg-center py-16 px-8 text-center text-white" style={{ backgroundImage: "url('assets/Camera background with green hue.png')" }}>
+      <section id="home" className="w-full bg-cover bg-center py-16 px-8 text-center text-white" style={{ backgroundImage: "url('assets/Main Background.png')" }}>
         <div className="max-w-md mx-auto bg-black bg-opacity-50 p-6 rounded-xl">
           <h2 className="text-2xl md:text-3xl font-bold mb-4">Make every choice count — for the planet and for the future</h2>
           <p className="text-sm text-gray-300 mb-6">Use the power of AI to understand the green impact of your purchases</p>
@@ -179,7 +179,7 @@ GreenScore: Provide an estimated GreenScore (0-10) based on these factors, deriv
       {/* Feature Highlights */}
       <section
         className="w-full bg-gray-50 py-16 px-8 bg-cover bg-center"
-        style={{ backgroundImage: "url('assets/Background light sketch.png')" }}
+        style={{ backgroundImage: "url('assets/Main Background.png')" }}
       >
         <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-8">
           <div className="bg-white rounded-xl shadow p-6 text-center hover:shadow-md">
