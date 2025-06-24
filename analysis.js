@@ -232,10 +232,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const sections = ['materials','manufacturing','design','finishing','endoflife'];
         sections.forEach(key => {
-            if (parsed[key]) {
-                const card = document.querySelector(`.analysis-card[data-section="${key}"] .card-content`);
+            const data = parsed[key];
+            if (data) {
+                const card = document.querySelector(`.analysis-card[data-section="${key}"]`);
                 if (card) {
-                    card.innerHTML = `<p>${parsed[key]}</p>`;
+                    const a = card.querySelector('.assumption');
+                    const e = card.querySelector('.evaluation');
+                    if (a && data.assumption) {
+                        a.innerHTML = `<strong>Assumption:</strong> ${data.assumption}`;
+                    }
+                    if (e && data.evaluation) {
+                        e.innerHTML = `<strong>Evaluation:</strong> ${data.evaluation}`;
+                    }
                 }
             }
         });
@@ -282,49 +290,64 @@ function parseAnalysisText(text) {
     const lines = text.split(/\n+/);
     let current = null;
     lines.forEach(line => {
-        const trimmed = line.trim();
-        const lower = trimmed.toLowerCase();
+        if (!line) return;
+        let trimmed = line.trim();
         if (!trimmed) return;
+        trimmed = trimmed.replace(/^[-\u2022]\s*/, '').replace(/^#+\s*/, '');
+        const lower = trimmed.toLowerCase();
+
         if (lower.startsWith('materials')) {
             current = 'materials';
-            sections[current] = trimmed.replace(/^materials\s*:?\s*/i, '');
+            if (!sections[current]) sections[current] = {};
             return;
         }
         if (lower.startsWith('manufacturing')) {
             current = 'manufacturing';
-            sections[current] = trimmed.replace(/^manufacturing(?: process)?\s*:?\s*/i, '');
+            if (!sections[current]) sections[current] = {};
             return;
         }
         if (lower.startsWith('design')) {
             current = 'design';
-            sections[current] = trimmed.replace(/^design(?: and durability)?\s*:?\s*/i, '');
+            if (!sections[current]) sections[current] = {};
             return;
         }
         if (lower.startsWith('finishing')) {
             current = 'finishing';
-            sections[current] = trimmed.replace(/^finishing(?: and coatings)?\s*:?\s*/i, '');
+            if (!sections[current]) sections[current] = {};
             return;
         }
         if (lower.startsWith('end of life')) {
             current = 'endoflife';
-            sections[current] = trimmed.replace(/^end of life\s*:?\s*/i, '');
+            if (!sections[current]) sections[current] = {};
             return;
         }
         if (lower.startsWith('greenscore')) {
-            const m = trimmed.match(/(\d+)/);
-            if (m) sections.score = parseInt(m[1]);
-            const rest = trimmed.replace(/^greenscore\s*:?\s*/i, '').replace(/\d+\s*(?:\/\s*\d+)?/, '').trim();
+            const m = trimmed.match(/(\d+(?:\.\d+)?)/);
+            if (m) sections.score = parseFloat(m[1]);
+            const rest = trimmed.replace(/^greenscore\s*:?\s*/i, '')
+                .replace(/estimated\s*/i, '')
+                .replace(/(\d+(?:\.\d+)?)(?:\s*\/\s*\d+)?/, '')
+                .trim();
             if (rest) sections.rationale = rest;
             current = 'rationale';
             return;
         }
         if (lower.startsWith('rationale')) {
             current = 'rationale';
-            sections[current] = trimmed.replace(/^rationale\s*:?\s*/i, '');
+            sections.rationale = trimmed.replace(/^rationale\s*:?\s*/i, '');
             return;
         }
+
         if (current) {
-            sections[current] = (sections[current] ? sections[current] + ' ' : '') + trimmed;
+            if (/^\*?assumption\*?/i.test(trimmed)) {
+                sections[current].assumption = trimmed.replace(/^\*?assumption\*?\s*:?\s*/i, '');
+                return;
+            }
+            if (/^\*?evaluation\*?/i.test(trimmed)) {
+                sections[current].evaluation = trimmed.replace(/^\*?evaluation\*?\s*:?\s*/i, '');
+                return;
+            }
+            sections[current].extra = (sections[current].extra ? sections[current].extra + ' ' : '') + trimmed;
         }
     });
     return sections;
