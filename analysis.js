@@ -213,11 +213,6 @@ class UserExperienceEnhancements {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    const dashboard = new SustainabilityDashboard();
-    UserExperienceEnhancements.addHoverEffects();
-    UserExperienceEnhancements.addSmoothScrolling();
-    UserExperienceEnhancements.addLoadingAnimations();
-    window.sustainabilityDashboard = dashboard;
     const stored = sessionStorage.getItem('analysisResult');
     if (stored) {
         const parsed = parseAnalysisText(stored);
@@ -248,6 +243,20 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+
+    const productName = sessionStorage.getItem('productName');
+    if (productName) {
+        const subtitle = document.querySelector('.subtitle');
+        if (subtitle) subtitle.textContent = productName;
+        document.title = `Product Sustainability Analysis - ${productName}`;
+    }
+
+    const dashboard = new SustainabilityDashboard();
+    UserExperienceEnhancements.addHoverEffects();
+    UserExperienceEnhancements.addSmoothScrolling();
+    UserExperienceEnhancements.addLoadingAnimations();
+    window.sustainabilityDashboard = dashboard;
+
     if ('performance' in window) {
         window.addEventListener('load', () => {
             const loadTime = performance.now();
