@@ -163,8 +163,8 @@ function LandingPage() {
   return (
     <div className="bg-white text-gray-800 font-sans">
       {/* Header */}
-      <header className="w-full px-6 py-4 flex justify-between items-center shadow-sm md:px-8">
-        <div className="flex items-center gap-2">
+      <header className="site-header w-full px-6 py-4 flex justify-between items-center shadow-sm md:px-8">
+        <div className="logo flex items-center gap-2">
           <img src="assets/Camera%20log.png" alt="EcoSnap logo" className="w-6 h-6" />
           <h1 className="text-xl font-bold text-green-600">EcoSnap</h1>
         </div>
@@ -198,12 +198,14 @@ function LandingPage() {
         </div>
       )}
 
-      {/* Hero Section */}
-      <section id="home" className="w-full bg-cover bg-center py-16 px-8 text-center text-white" style={{ backgroundImage: "url('assets/Main Background.png')" }}>
-        <div className="max-w-md mx-auto bg-black bg-opacity-50 p-6 rounded-xl">
-          <h2 className="text-2xl md:text-3xl font-bold mb-4">Make every choice count — for the planet and for the future</h2>
-          <p className="text-sm text-gray-300 mb-6">Use the power of AI to understand the green impact of your purchases</p>
-          <label className="block mb-4">
+
+      <header className="hero">
+        <div className="container">
+          <h1>Make Every Choice Count</h1>
+          <p className="subheading">For the planet and for the future</p>
+          <p className="tagline">Use the power of AI to understand the green impact of your purchases.</p>
+          <label className="snap-button">
+            <i className="fa fa-camera"></i> Snap
             <input
               type="file"
               accept="image/*"
@@ -211,11 +213,7 @@ function LandingPage() {
               onChange={handleSnap}
               className="hidden"
             />
-            <span className="cursor-pointer bg-green-600 w-full block text-white px-6 py-2 rounded-full text-sm font-medium hover:bg-green-700 text-center">
-              Snap
-            </span>
           </label>
-
           {imagePreview && (
             <>
               <img
@@ -233,11 +231,13 @@ function LandingPage() {
               <button onClick={handleScore} className="bg-white w-full text-green-700 px-6 py-2 rounded-full text-sm font-medium hover:bg-gray-200">
                 Score Me
               </button>
-              {result && <p className="text-sm text-white whitespace-pre-wrap mt-4">{result}</p>}
+              {result && (
+                <p className="text-sm text-white whitespace-pre-wrap mt-4">{result}</p>
+              )}
             </>
           )}
         </div>
-      </section>
+      </header>
 
       {/* Feature Highlights */}
       <section
