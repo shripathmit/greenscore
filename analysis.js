@@ -275,8 +275,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const storedName = sessionStorage.getItem('productName');
     const productName = titleFromResult || storedName;
     if (productName) {
-        const subtitle = document.querySelector('.subtitle');
-        if (subtitle) subtitle.textContent = productName;
+        const titleEl = document.getElementById('image-title');
+        if (titleEl) titleEl.textContent = productName;
         document.title = `Product Sustainability Analysis - ${productName}`;
     }
 
