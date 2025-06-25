@@ -214,8 +214,10 @@ class UserExperienceEnhancements {
 
 document.addEventListener('DOMContentLoaded', function() {
     const stored = sessionStorage.getItem('analysisResult');
+    let titleFromResult = '';
     if (stored) {
         const parsed = parseAnalysisText(stored);
+        titleFromResult = extractTitle(stored);
         const rationale = document.querySelector('.score-rationale');
         if (rationale) rationale.textContent = parsed.rationale || stored;
         if (parsed.score) {
@@ -252,11 +254,18 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    const productName = sessionStorage.getItem('productName');
+    const storedName = sessionStorage.getItem('productName');
+    const productName = titleFromResult || storedName;
     if (productName) {
         const subtitle = document.querySelector('.subtitle');
         if (subtitle) subtitle.textContent = productName;
         document.title = `Product Sustainability Analysis - ${productName}`;
+    }
+
+    const preview = sessionStorage.getItem('imagePreview');
+    if (preview) {
+        const img = document.getElementById('product-thumbnail');
+        if (img) img.src = preview;
     }
 
     const dashboard = new SustainabilityDashboard();
@@ -389,4 +398,12 @@ function parseAnalysisText(text) {
         }
     });
     return sections;
+}
+
+function extractTitle(text) {
+    const m = text.match(/Sustainability Analysis of(?: the)?\s+(.+)/i);
+    if (m) {
+        return m[1].trim();
+    }
+    return '';
 }

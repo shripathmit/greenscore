@@ -92,7 +92,11 @@ function LandingPage() {
     if (file) {
       setImageFile(file);
       const reader = new FileReader();
-      reader.onloadend = () => setImagePreview(reader.result);
+      reader.onloadend = () => {
+        const dataUrl = reader.result;
+        setImagePreview(dataUrl);
+        sessionStorage.setItem('imagePreview', dataUrl);
+      };
       reader.readAsDataURL(file);
       const name = file.name ? file.name.replace(/\.[^/.]+$/, '') : 'Uploaded Product';
       sessionStorage.setItem('productName', name);

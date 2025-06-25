@@ -663,6 +663,13 @@ select.form-control {
   padding: var(--space-32) 0;
 }
 
+.header .thumbnail {
+  max-width: 150px;
+  margin: 0 auto var(--space-12);
+  border-radius: var(--radius-md);
+  display: block;
+}
+
 .header h1 {
   font-size: var(--font-size-4xl);
   color: var(--color-text);
