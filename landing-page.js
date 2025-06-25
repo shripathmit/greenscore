@@ -2,7 +2,35 @@
 // object here avoids module syntax which isn't supported by the in-browser
 // Babel transform.
 const { useState } = React;
-const MOCK_RESULT = `GreenScore: 8/10\nThis sample score assumes the product is made from mostly renewable materials with minimal packaging. Manufacturing impact is moderate, and the item appears durable and recyclable.`;
+const MOCK_RESULT = `### Sustainability Analysis of the Product
+
+#### Materials
+- *Assumption*: Example assumption about materials.
+- *Evaluation*: Example evaluation.
+- *Score*: 7/10
+
+#### Manufacturing Process
+- *Assumption*: Example assumption about manufacturing.
+- *Evaluation*: Example evaluation.
+- *Score*: 6/10
+
+#### Design and Durability
+- *Assumption*: Example assumption about design.
+- *Evaluation*: Example evaluation.
+- *Score*: 7/10
+
+#### Finishing and Coatings
+- *Assumption*: Example assumption about finishing.
+- *Evaluation*: Example evaluation.
+- *Score*: 8/10
+
+#### End of Life
+- *Assumption*: Example assumption about end of life.
+- *Evaluation*: Example evaluation.
+- *Score*: 7/10
+
+### GreenScore: Estimated 7/10
+- *Rationale*: Mock rationale for demo purposes.`;
 
 function LandingPage() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -66,23 +94,13 @@ function LandingPage() {
             model: 'gpt-4o-mini',
             messages: [
               {
+                role: 'system',
+                content: `You are an expert in sustainability assessment. When given an image of a product, you will analyze its sustainability across five categories: Materials, Manufacturing Process, Design and Durability, Finishing and Coatings, and End of Life.\n\nFor each category:\n- Provide a clear assumption if the image lacks explicit details\n- Offer a brief evaluation of sustainability\n- Assign a score out of 10 based on your assessment\n\nAt the end, calculate the overall GreenScore as the average of the five category scores. Include a short rationale justifying the overall score.\n\nAlways return your output in the following format:\n\n### Sustainability Analysis of the Product\n\n#### Materials\n- *Assumption*: ...\n- *Evaluation*: ...\n- *Score*: X/10\n\n#### Manufacturing Process\n- *Assumption*: ...\n- *Evaluation*: ...\n- *Score*: X/10\n\n#### Design and Durability\n- *Assumption*: ...\n- *Evaluation*: ...\n- *Score*: X/10\n\n#### Finishing and Coatings\n- *Assumption*: ...\n- *Evaluation*: ...\n- *Score*: X/10\n\n#### End of Life\n- *Assumption*: ...\n- *Evaluation*: ...\n- *Score*: X/10\n\n### GreenScore: Estimated X/10\n- *Rationale*: ...`
+              },
+              {
                 role: 'user',
                 content: [
-                  { type: 'text', text: `
-                  Please analyze the sustainability of this product based on the image provided. Evaluate the following factors and make assumptions if no additional information is available:
-
-Materials: Identify the type of materials used (e.g., wood, metal, plastic, fabric). Are these materials renewable, recycled, or certified (e.g., FSC, eco-labels)?
-Assumption: If material details are not provided in the image, assume common materials such as untreated or minimally treated wood, or standard plastics and metals.
-Manufacturing Process: Based on the design and construction visible in the image, does the product appear to be crafted with minimal waste, energy-efficient methods, or environmentally-friendly technologies?
-Assumption: If manufacturing details are not visible, assume that the product was made using standard production techniques unless otherwise indicated.
-Design and Durability: Does the product appear to be designed for longevity, easy repair, or recyclability? Does the design seem timeless and durable to minimize the need for replacement?
-Assumption: If design details are not available, assume a basic design with moderate durability unless indicated otherwise.
-Finishing and Coatings: Based on the appearance, does the product have environmentally friendly finishes (e.g., water-based paints, non-toxic sealants)?
-Assumption: If no finishing details are visible, assume the product uses typical finishes unless specified in the image.
-End of Life: Does the product seem recyclable or biodegradable at the end of its life based on its material and design?
-Assumption: If end-of-life information is not available, assume that the product’s disposal follows typical industry standards for the materials visible.
-GreenScore: Provide an estimated GreenScore (0-10) based on these factors, derived from the image analysis. Include a brief rationale for the score, making any necessary assumptions if information is missing.
-                  ` },
+                  { type: 'text', text: 'Please analyze the sustainability of this product based on the uploaded image.' },
                   { type: 'image_url', image_url: { url: `data:${imageFile.type};base64,${base64}` } }
                 ]
               }
