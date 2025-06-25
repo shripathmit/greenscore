@@ -2,7 +2,35 @@
 // object here avoids module syntax which isn't supported by the in-browser
 // Babel transform.
 const { useState } = React;
-const MOCK_RESULT = `GreenScore: 8/10\nThis sample score assumes the product is made from mostly renewable materials with minimal packaging. Manufacturing impact is moderate, and the item appears durable and recyclable.`;
+const MOCK_RESULT = `### Sustainability Analysis of the Product
+
+#### Materials
+- *Assumption*: Example assumption about materials.
+- *Evaluation*: Example evaluation.
+- *Score*: 7/10
+
+#### Manufacturing Process
+- *Assumption*: Example assumption about manufacturing.
+- *Evaluation*: Example evaluation.
+- *Score*: 6/10
+
+#### Design and Durability
+- *Assumption*: Example assumption about design.
+- *Evaluation*: Example evaluation.
+- *Score*: 7/10
+
+#### Finishing and Coatings
+- *Assumption*: Example assumption about finishing.
+- *Evaluation*: Example evaluation.
+- *Score*: 8/10
+
+#### End of Life
+- *Assumption*: Example assumption about end of life.
+- *Evaluation*: Example evaluation.
+- *Score*: 7/10
+
+### GreenScore: Estimated 7/10
+- *Rationale*: Mock rationale for demo purposes.`;
 
 // Prompt sent to OpenAI for sustainability analysis
 const ANALYSIS_PROMPT = `
@@ -102,6 +130,10 @@ function LandingPage() {
           body: JSON.stringify({
             model: 'gpt-4o-mini',
             messages: [
+              {
+                role: 'system',
+                content: `You are an expert in sustainability assessment. When given an image of a product, you will analyze its sustainability across five categories: Materials, Manufacturing Process, Design and Durability, Finishing and Coatings, and End of Life.\n\nFor each category:\n- Provide a clear assumption if the image lacks explicit details\n- Offer a brief evaluation of sustainability\n- Assign a score out of 10 based on your assessment\n\nAt the end, calculate the overall GreenScore as the average of the five category scores. Include a short rationale justifying the overall score.\n\nAlways return your output in the following format:\n\n### Sustainability Analysis of the Product\n\n#### Materials\n- *Assumption*: ...\n- *Evaluation*: ...\n- *Score*: X/10\n\n#### Manufacturing Process\n- *Assumption*: ...\n- *Evaluation*: ...\n- *Score*: X/10\n\n#### Design and Durability\n- *Assumption*: ...\n- *Evaluation*: ...\n- *Score*: X/10\n\n#### Finishing and Coatings\n- *Assumption*: ...\n- *Evaluation*: ...\n- *Score*: X/10\n\n#### End of Life\n- *Assumption*: ...\n- *Evaluation*: ...\n- *Score*: X/10\n\n### GreenScore: Estimated X/10\n- *Rationale*: ...`
+              },
               {
                 role: 'user',
                 content: [

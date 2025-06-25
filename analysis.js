@@ -240,11 +240,19 @@ document.addEventListener('DOMContentLoaded', function() {
                     const a = card.querySelector('.assumption');
                     const e = card.querySelector('.evaluation');
                     const x = card.querySelector('.extra');
+                    const sv = card.querySelector('.score-value');
+                    const sb = card.querySelector('.score-bar-fill');
                     if (a && data.assumption) {
                         a.innerHTML = `<strong>Assumption:</strong> ${data.assumption}`;
                     }
                     if (e && data.evaluation) {
                         e.innerHTML = `<strong>Evaluation:</strong> ${data.evaluation}`;
+                    }
+                    if (sv && data.score !== undefined) {
+                        sv.textContent = data.score;
+                    }
+                    if (sb && data.score !== undefined) {
+                        sb.setAttribute('data-score', data.score);
                     }
                     if (x && data.extra) {
                         x.innerHTML = data.extra;
@@ -370,6 +378,12 @@ function parseAnalysisText(text) {
             if (/^\*?evaluation\*?/i.test(trimmed)) {
                 if (!sections[current]) sections[current] = {};
                 sections[current].evaluation = trimmed.replace(/^\*?evaluation\*?\s*:?\s*/i, '');
+                return;
+            }
+            if (/^\*?score\*?/i.test(trimmed)) {
+                if (!sections[current]) sections[current] = {};
+                const m = trimmed.match(/score\s*:?\s*(\d+(?:\.\d+)?)/i);
+                if (m) sections[current].score = parseFloat(m[1]);
                 return;
             }
             if (!sections[current]) sections[current] = {};
