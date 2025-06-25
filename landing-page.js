@@ -4,6 +4,43 @@
 const { useState } = React;
 const MOCK_RESULT = `GreenScore: 8/10\nThis sample score assumes the product is made from mostly renewable materials with minimal packaging. Manufacturing impact is moderate, and the item appears durable and recyclable.`;
 
+const ANALYSIS_PROMPT = `
+Please analyze the sustainability of this product based on the image provided. Evaluate the following factors and make assumptions if no additional information is available:
+
+Materials: Identify the type of materials used (e.g., wood, metal, plastic, fabric). Are these materials renewable, recycled, or certified (e.g., FSC, eco-labels)?
+Assumption: If material details are not provided in the image, assume common materials such as untreated or minimally treated wood, or standard plastics and metals.
+Manufacturing Process: Based on the design and construction visible in the image, does the product appear to be crafted with minimal waste, energy-efficient methods, or environmentally-friendly technologies?
+Assumption: If manufacturing details are not visible, assume that the product was made using standard production techniques unless otherwise indicated.
+Design and Durability: Does the product appear to be designed for longevity, easy repair, or recyclability? Does the design seem timeless and durable to minimize the need for replacement?
+Assumption: If design details are not available, assume a basic design with moderate durability unless indicated otherwise.
+Finishing and Coatings: Based on the appearance, does the product have environmentally friendly finishes (e.g., water-based paints, non-toxic sealants)?
+Assumption: If no finishing details are visible, assume the product uses typical finishes unless specified in the image.
+End of Life: Does the product seem recyclable or biodegradable at the end of its life based on its material and design?
+Assumption: If end-of-life information is not available, assume that the product’s disposal follows typical industry standards for the materials visible.
+GreenScore: Provide an estimated GreenScore (0-10) based on these factors, derived from the image analysis. Include a brief rationale for the score, making any necessary assumptions if information is missing.
+
+Always return response in the example format.
+
+### Sustainability Analysis of the Product
+#### Materials
+- *Assumption*: The tumbler appears to be made of stainless steel with a plastic lid and straw.
+- *Evaluation*: Stainless steel is a durable and recyclable material. If the plastic used is recyclable, it adds to the sustainability.
+#### Manufacturing Process
+- *Assumption*: Without specific details, it is assumed that the manufacturing process follows standard industry techniques, likely involving some energy consumption but not necessarily energy-efficient methods.
+- *Evaluation*: If the product is designed to be durable and recyclable, it might offset some of the environmental impact from manufacturing.
+#### Design and Durability
+- *Assumption*: The design seems practical with a focus on functionality, indicating potential durability and longevity. However, moderation in design is assumed without specific details.
+- *Evaluation*: A durable design supports sustainability by reducing the need for frequent replacements.
+#### Finishing and Coatings
+- *Assumption*: It’s unclear from the image if the finishes are eco-friendly, so standard finishes are assumed.
+- *Evaluation*: Non-toxic finishes would significantly enhance sustainability but cannot be confirmed without more details.
+#### End of Life
+- *Assumption*: Assuming the materials are typically recyclable, especially stainless steel and possibly the plastic parts.
+- *Evaluation*: If designed for recyclability, this can significantly reduce waste at the product's end of life.
+### GreenScore: Estimated 7/10
+- *Rationale*: The product appears to use durable materials and has the potential for positive end-of-life outcomes through recyclability. However, due to assumptions about manufacturing processes and finishings, a score of 7 reflects a moderately sustainable product, with room for improvement in material sourcing and processes.
+`;
+
 function LandingPage() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [imagePreview, setImagePreview] = useState(null);
@@ -68,21 +105,7 @@ function LandingPage() {
               {
                 role: 'user',
                 content: [
-                  { type: 'text', text: `
-                  Please analyze the sustainability of this product based on the image provided. Evaluate the following factors and make assumptions if no additional information is available:
-
-Materials: Identify the type of materials used (e.g., wood, metal, plastic, fabric). Are these materials renewable, recycled, or certified (e.g., FSC, eco-labels)?
-Assumption: If material details are not provided in the image, assume common materials such as untreated or minimally treated wood, or standard plastics and metals.
-Manufacturing Process: Based on the design and construction visible in the image, does the product appear to be crafted with minimal waste, energy-efficient methods, or environmentally-friendly technologies?
-Assumption: If manufacturing details are not visible, assume that the product was made using standard production techniques unless otherwise indicated.
-Design and Durability: Does the product appear to be designed for longevity, easy repair, or recyclability? Does the design seem timeless and durable to minimize the need for replacement?
-Assumption: If design details are not available, assume a basic design with moderate durability unless indicated otherwise.
-Finishing and Coatings: Based on the appearance, does the product have environmentally friendly finishes (e.g., water-based paints, non-toxic sealants)?
-Assumption: If no finishing details are visible, assume the product uses typical finishes unless specified in the image.
-End of Life: Does the product seem recyclable or biodegradable at the end of its life based on its material and design?
-Assumption: If end-of-life information is not available, assume that the product’s disposal follows typical industry standards for the materials visible.
-GreenScore: Provide an estimated GreenScore (0-10) based on these factors, derived from the image analysis. Include a brief rationale for the score, making any necessary assumptions if information is missing.
-                  ` },
+                  { type: 'text', text: ANALYSIS_PROMPT },
                   { type: 'image_url', image_url: { url: `data:${imageFile.type};base64,${base64}` } }
                 ]
               }
