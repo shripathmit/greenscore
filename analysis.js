@@ -239,11 +239,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (card) {
                     const a = card.querySelector('.assumption');
                     const e = card.querySelector('.evaluation');
+                    const x = card.querySelector('.extra');
                     if (a && data.assumption) {
                         a.innerHTML = `<strong>Assumption:</strong> ${data.assumption}`;
                     }
                     if (e && data.evaluation) {
                         e.innerHTML = `<strong>Evaluation:</strong> ${data.evaluation}`;
+                    }
+                    if (x && data.extra) {
+                        x.innerHTML = data.extra;
                     }
                 }
             }

@@ -916,7 +916,7 @@ select.form-control {
   padding: var(--space-20);
 }
 
-.assumption, .evaluation {
+.assumption, .evaluation, .extra {
   margin-bottom: var(--space-16);
   font-size: var(--font-size-base);
   line-height: var(--line-height-normal);
@@ -936,6 +936,14 @@ select.form-control {
   background-color: rgba(33, 128, 141, 0.05);
   border-radius: var(--radius-base);
   border-left: 3px solid var(--color-primary);
+}
+
+.extra {
+  color: var(--color-text-secondary);
+  padding: var(--space-12);
+  background-color: var(--color-secondary);
+  border-radius: var(--radius-base);
+  border-left: 3px solid var(--color-card-border);
 }
 
 .key-points {
