@@ -11,6 +11,7 @@ class SustainabilityDashboard {
         this.setupCardInteractions();
         this.animateProgressBars();
         this.setupAccessibility();
+        this.expandAllSections();
         setTimeout(() => {
             this.animateScoreOnLoad();
         }, 300);
@@ -152,6 +153,23 @@ class SustainabilityDashboard {
         if (card && !card.classList.contains('expanded')) {
             this.toggleCardExpansion(card);
         }
+    }
+
+    expandAllSections() {
+        this.analysisCards.forEach(card => {
+            if (!card.classList.contains('expanded')) {
+                card.classList.add('expanded');
+                const content = card.querySelector('.card-content');
+                if (content) {
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                    content.style.opacity = '1';
+                    content.style.paddingTop = 'var(--space-20)';
+                    content.style.paddingBottom = 'var(--space-20)';
+                }
+                const expandBtn = card.querySelector('.expand-btn');
+                if (expandBtn) expandBtn.setAttribute('aria-expanded', 'true');
+            }
+        });
     }
 
     getAnalysisData() {
