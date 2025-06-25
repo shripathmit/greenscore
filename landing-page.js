@@ -204,17 +204,17 @@ function LandingPage() {
         style={{ backgroundImage: "url('assets/Main Background.png')" }}
       >
         <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-8">
-          <div className="bg-white rounded-xl shadow p-6 text-center hover:shadow-md">
+          <div className="bg-white rounded-xl shadow py-6 px-8 text-center hover:shadow-md">
             <div className="w-12 h-12 bg-green-100 rounded-full mx-auto mb-4"></div>
             <h4 className="text-lg font-semibold mb-2">Why EcoSnap?</h4>
             <p className="text-gray-600 text-sm">EcoSnap gives you instant green scoring with transparent AI so you can buy better without the guesswork.</p>
           </div>
-          <div className="bg-white rounded-xl shadow p-6 text-center hover:shadow-md">
+          <div className="bg-white rounded-xl shadow py-6 px-8 text-center hover:shadow-md">
             <div className="w-12 h-12 bg-green-100 rounded-full mx-auto mb-4"></div>
             <h4 className="text-lg font-semibold mb-2">Who It's For</h4>
             <p className="text-gray-600 text-sm">From eco-conscious shoppers to sustainability-focused brands, EcoSnap is built for anyone making mindful decisions.</p>
           </div>
-          <div className="bg-white rounded-xl shadow p-6 text-center hover:shadow-md">
+          <div className="bg-white rounded-xl shadow py-6 px-8 text-center hover:shadow-md">
             <div className="w-12 h-12 bg-green-100 rounded-full mx-auto mb-4"></div>
             <h4 className="text-lg font-semibold mb-2">Our AI Advantage</h4>
             <p className="text-gray-600 text-sm">Backed by data and constantly learning, EcoSnap’s AI delivers fast, reliable impact scores tailored to your choices.</p>
