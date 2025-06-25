@@ -4,6 +4,7 @@
 const { useState } = React;
 const MOCK_RESULT = `GreenScore: 8/10\nThis sample score assumes the product is made from mostly renewable materials with minimal packaging. Manufacturing impact is moderate, and the item appears durable and recyclable.`;
 
+// Prompt sent to OpenAI for sustainability analysis
 const ANALYSIS_PROMPT = `
 Please analyze the sustainability of this product based on the image provided. Evaluate the following factors and make assumptions if no additional information is available:
 
