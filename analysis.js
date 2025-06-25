@@ -348,20 +348,27 @@ function parseAnalysisText(text) {
             return;
         }
         if (lower.startsWith('rationale')) {
-            current = 'rationale';
             sections.rationale = trimmed.replace(/^rationale\s*:?\s*/i, '');
+            current = 'rationale';
             return;
         }
 
         if (current) {
+            if (current === 'rationale') {
+                sections.rationale = (sections.rationale ? sections.rationale + ' ' : '') + trimmed;
+                return;
+            }
             if (/^\*?assumption\*?/i.test(trimmed)) {
+                if (!sections[current]) sections[current] = {};
                 sections[current].assumption = trimmed.replace(/^\*?assumption\*?\s*:?\s*/i, '');
                 return;
             }
             if (/^\*?evaluation\*?/i.test(trimmed)) {
+                if (!sections[current]) sections[current] = {};
                 sections[current].evaluation = trimmed.replace(/^\*?evaluation\*?\s*:?\s*/i, '');
                 return;
             }
+            if (!sections[current]) sections[current] = {};
             sections[current].extra = (sections[current].extra ? sections[current].extra + ' ' : '') + trimmed;
         }
     });
