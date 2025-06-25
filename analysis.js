@@ -319,16 +319,6 @@ window.addEventListener('error', function(e) {
     console.error('Dashboard Error:', e.error);
 });
 
-function announceToScreenReader(message) {
-    const announcement = document.createElement('div');
-    announcement.setAttribute('aria-live', 'polite');
-    announcement.setAttribute('aria-atomic', 'true');
-    announcement.className = 'sr-only';
-    announcement.textContent = message;
-    document.body.appendChild(announcement);
-    setTimeout(() => { document.body.removeChild(announcement); }, 1000);
-}
-
 function parseAnalysisText(text) {
     const sections = {};
     const lines = text.split(/\n+/);
