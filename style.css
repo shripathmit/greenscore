@@ -25,6 +25,22 @@ section {
   color: #333;
 }
 
+/* Header navigation link style */
+nav ul li a {
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #1b5e20;
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+}
+
+nav ul li a:hover {
+  color: #145a32;
+  border-bottom-color: #145a32;
+}
+
 .hero {
   padding: 2rem;
   text-align: center;
