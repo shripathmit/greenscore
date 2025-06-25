@@ -7,7 +7,6 @@ const MOCK_RESULT = `GreenScore: 8/10\nThis sample score assumes the product is 
 // Prompt sent to OpenAI for sustainability analysis
 const ANALYSIS_PROMPT = `
 Please analyze the sustainability of this product based on the image provided. Evaluate the following factors and make assumptions if no additional information is available:
-
 Materials: Identify the type of materials used (e.g., wood, metal, plastic, fabric). Are these materials renewable, recycled, or certified (e.g., FSC, eco-labels)?
 Assumption: If material details are not provided in the image, assume common materials such as untreated or minimally treated wood, or standard plastics and metals.
 Manufacturing Process: Based on the design and construction visible in the image, does the product appear to be crafted with minimal waste, energy-efficient methods, or environmentally-friendly technologies?
