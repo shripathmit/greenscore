@@ -216,12 +216,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const stored = sessionStorage.getItem('analysisResult');
     if (stored) {
         const parsed = parseAnalysisText(stored);
-        console.log('OpenAI raw result:', stored);
-        console.log('Parsed result:', parsed);
-        const rawBox = document.getElementById('raw-response');
-        if (rawBox) rawBox.value = stored;
-        const parsedBox = document.getElementById('parsed-response');
-        if (parsedBox) parsedBox.value = JSON.stringify(parsed, null, 2);
         const rationale = document.querySelector('.score-rationale');
         if (rationale) rationale.textContent = parsed.rationale || stored;
         if (parsed.score) {
