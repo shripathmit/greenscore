@@ -218,7 +218,7 @@ function LandingPage() {
 
       {/* Feature Highlights */}
       <section
-        className="w-full bg-gray-50 py-16 px-8 bg-cover bg-center"
+        className="w-full bg-gray-50 py-16 px-4 bg-cover bg-center"
         style={{ backgroundImage: "url('assets/Main Background.png')" }}
       >
         <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-8">
