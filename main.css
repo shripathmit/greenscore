@@ -831,6 +831,12 @@ select.form-control {
   display: block;
 }
 
+#product-thumbnail {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .header h1 {
   font-size: var(--font-size-4xl);
   color: var(--color-text);
@@ -838,7 +844,7 @@ select.form-control {
   font-weight: var(--font-weight-bold);
 }
 
-.header .subtitle {
+.header .image-title {
   font-size: var(--font-size-2xl);
   color: var(--color-primary);
   margin-bottom: var(--space-20);
@@ -1265,7 +1271,7 @@ select.form-control {
     font-size: var(--font-size-3xl);
   }
   
-  .header .subtitle {
+  .header .image-title {
     font-size: var(--font-size-xl);
   }
   
