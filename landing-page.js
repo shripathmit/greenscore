@@ -74,6 +74,7 @@ function LandingPage() {
   const [imageFile, setImageFile] = useState(null);
   const [apiKey, setApiKey] = useState("");
   const [result, setResult] = useState("");
+  const [loading, setLoading] = useState(false);
 
 
   const handleSnap = (event) => {
@@ -98,8 +99,11 @@ function LandingPage() {
       return;
     }
 
+    setLoading(true);
+
     const finalize = (text) => {
       setResult(text);
+      setLoading(false);
       sessionStorage.setItem('analysisResult', text);
       window.location.href = 'analysis.html';
     };
@@ -192,6 +196,11 @@ function LandingPage() {
               <button onClick={handleScore} className="bg-white w-full text-green-700 px-6 py-2 rounded-full text-sm font-medium hover:bg-gray-200">
                 Score Me
               </button>
+              {loading && (
+                <div className="flex justify-center mt-4">
+                  <div className="loader" aria-label="Loading"></div>
+                </div>
+              )}
               {result && <p className="text-sm text-white whitespace-pre-wrap mt-4">{result}</p>}
             </>
           )}
