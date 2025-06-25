@@ -142,3 +142,83 @@ section {
   from { transform: translateX(0); }
   to { transform: translateX(200px); }
 }
+
+/* Shared layout styles */
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #2d9b57;
+}
+
+.logo i {
+  margin-right: 10px;
+  font-size: 1.8rem;
+}
+
+.hero {
+  background: linear-gradient(135deg, #d4f2d2, #f0fff4);
+  padding: 100px 20px;
+  text-align: center;
+  position: relative;
+  border-radius: 0 0 24px 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+.hero .container {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #1e4620;
+  margin-bottom: 0.5rem;
+}
+
+.hero .subheading {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #317b3c;
+  margin-bottom: 1rem;
+}
+
+.hero .tagline {
+  font-size: 1rem;
+  color: #4d4d4d;
+  margin-bottom: 2rem;
+}
+
+.snap-button {
+  background-color: #2d9b57;
+  color: #fff;
+  border: none;
+  padding: 14px 28px;
+  font-size: 1rem;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  font-weight: 600;
+  box-shadow: 0 8px 16px rgba(45, 155, 87, 0.25);
+}
+
+.snap-button:hover {
+  background-color: #228b4a;
+  transform: translateY(-2px);
+}
+
+.snap-button i {
+  margin-right: 8px;
+}
