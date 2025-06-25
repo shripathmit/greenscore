@@ -70,22 +70,18 @@ Always return response in the example format.
 `;
 
 function LandingPage() {
-  const [menuOpen, setMenuOpen] = useState(false);
   const [imagePreview, setImagePreview] = useState(null);
   const [imageFile, setImageFile] = useState(null);
   const [apiKey, setApiKey] = useState("");
   const [result, setResult] = useState("");
 
-  // Navigation links used in the header
-  const navLinks = [
-    { text: "Home", href: "index.html" },
+  // Links moved to the footer
+  const footerLinks = [
     { text: "About Us", href: "info.html#about" },
     { text: "Why", href: "info.html#why" },
     { text: "Blog", href: "info.html#blog" },
     { text: "Green Agent", href: "green_agent.html" },
   ];
-  // Sum data for headers: total number of navigation sections
-  const headerCount = navLinks.length;
 
   const handleSnap = (event) => {
     const file = event.target.files[0];
@@ -172,35 +168,12 @@ function LandingPage() {
           <img src="assets/Camera%20log.png" alt="EcoSnap logo" className="w-6 h-6" />
           <h1 className="text-xl font-bold text-green-600">EcoSnap</h1>
         </div>
-        <button className="md:hidden text-gray-700 focus:outline-none" onClick={() => setMenuOpen(!menuOpen)}>
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
-        </button>
-        <nav className="hidden md:flex gap-6 text-sm font-medium items-center">
-          {navLinks.map((link) => (
-            <a key={link.text} href={link.href} className="hover:text-green-600">
-              {link.text}
-            </a>
-          ))}
-          <span className="ml-4 text-xs text-gray-500">({headerCount})</span>
+        <nav className="flex gap-6 text-sm font-medium items-center">
+          <a href="index.html" className="hover:text-green-600">Home</a>
+          <a href="#" className="hover:text-green-600">Login</a>
         </nav>
       </header>
 
-      {menuOpen && (
-        <div className="md:hidden px-6 pb-4 bg-white shadow-sm">
-          {navLinks.map((link) => (
-            <a
-              key={link.text}
-              href={link.href}
-              className="block py-2 text-sm hover:text-green-600"
-            >
-              {link.text}
-            </a>
-          ))}
-          <span className="block pt-2 text-xs text-gray-500">({headerCount})</span>
-        </div>
-      )}
 
       {/* Hero Section */}
       <section id="home" className="w-full bg-cover bg-center py-16 px-8 text-center text-white" style={{ backgroundImage: "url('assets/Main Background.png')" }}>
@@ -278,6 +251,13 @@ function LandingPage() {
           <p className="text-sm text-gray-400 max-w-xs">
             Making everyday choices greener with the power of AI.
           </p>
+          <div className="flex flex-wrap justify-center gap-4 text-sm">
+            {footerLinks.map((link) => (
+              <a key={link.text} href={link.href} className="hover:underline">
+                {link.text}
+              </a>
+            ))}
+          </div>
           <div className="flex gap-4">
             <a href="#" className="text-gray-400 hover:text-white text-xl"><i className="fab fa-twitter"></i></a>
             <a href="#" className="text-gray-400 hover:text-white text-xl"><i className="fab fa-instagram"></i></a>

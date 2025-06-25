@@ -13,28 +13,11 @@
             <img src="assets/Camera%20log.png" alt="EcoSnap logo" class="w-6 h-6" />
             <h1 class="text-xl font-bold text-green-600">EcoSnap</h1>
         </div>
-        <button id="menu-btn" class="md:hidden text-gray-700 focus:outline-none">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-        </button>
-        <nav class="hidden md:flex gap-6 text-sm font-medium items-center">
+        <nav class="flex gap-6 text-sm font-medium items-center">
             <a href="index.html" class="hover:text-green-600">Home</a>
-            <a href="info.html#about" class="hover:text-green-600">About Us</a>
-            <a href="info.html#why" class="hover:text-green-600">Why</a>
-            <a href="info.html#blog" class="hover:text-green-600">Blog</a>
-            <a href="green_agent.html" class="hover:text-green-600">Green Agent</a>
-            <span class="ml-4 text-xs text-gray-500">(5)</span>
+            <a href="#" class="hover:text-green-600">Login</a>
         </nav>
     </header>
-    <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 bg-white shadow-sm">
-        <a href="index.html" class="block py-2 text-sm hover:text-green-600">Home</a>
-        <a href="info.html#about" class="block py-2 text-sm hover:text-green-600">About Us</a>
-        <a href="info.html#why" class="block py-2 text-sm hover:text-green-600">Why</a>
-        <a href="info.html#blog" class="block py-2 text-sm hover:text-green-600">Blog</a>
-        <a href="green_agent.html" class="block py-2 text-sm hover:text-green-600">Green Agent</a>
-        <span class="block pt-2 text-xs text-gray-500">(5)</span>
-    </div>
     <div class="container">
         <!-- Header Section -->
         <header class="header">
@@ -201,18 +184,15 @@
                 <p><strong>Scoring System:</strong> 10-point scale (1=Poor, 10=Excellent)</p>
                 <p><strong>Assessment Date:</strong> June 2025</p>
             </div>
+            <nav class="links">
+                <a href="info.html#about">About Us</a>
+                <a href="info.html#why">Why</a>
+                <a href="info.html#blog">Blog</a>
+                <a href="green_agent.html">Green Agent</a>
+            </nav>
         </footer>
     </div>
 
-    <script>
-        const menuBtn = document.getElementById('menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        if (menuBtn && mobileMenu) {
-            menuBtn.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-            });
-        }
-    </script>
     <script src="analysis.js"></script>
 </body>
 </html>
