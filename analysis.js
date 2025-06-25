@@ -239,7 +239,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (card) {
                     const a = card.querySelector('.assumption');
                     const e = card.querySelector('.evaluation');
-                    const x = card.querySelector('.extra');
+                    const st = card.querySelector('.score-text');
                     const sv = card.querySelector('.score-value');
                     const sb = card.querySelector('.score-bar-fill');
                     if (a && data.assumption) {
@@ -254,8 +254,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     if (sb && data.score !== undefined) {
                         sb.setAttribute('data-score', data.score);
                     }
-                    if (x && data.extra) {
-                        x.innerHTML = data.extra;
+                    if (st && data.score !== undefined) {
+                        st.textContent = `Score: ${data.score}/10`;
                     }
                 }
             }

@@ -916,7 +916,7 @@ select.form-control {
   padding: var(--space-20);
 }
 
-.assumption, .evaluation, .extra {
+.assumption, .evaluation, .score-text {
   margin-bottom: var(--space-16);
   font-size: var(--font-size-base);
   line-height: var(--line-height-normal);
@@ -938,13 +938,16 @@ select.form-control {
   border-left: 3px solid var(--color-primary);
 }
 
-.extra {
-  color: var(--color-text-secondary);
+.score-text {
+  color: var(--color-text);
   padding: var(--space-12);
   background-color: var(--color-secondary);
   border-radius: var(--radius-base);
-  border-left: 3px solid var(--color-card-border);
+  border-left: 3px solid var(--color-success);
+  margin-bottom: var(--space-16);
+  font-weight: var(--font-weight-semibold);
 }
+
 
 .key-points {
   list-style: none;
