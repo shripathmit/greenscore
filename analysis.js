@@ -386,6 +386,14 @@ function parseAnalysisText(text) {
                 if (m) sections[current].score = parseFloat(m[1]);
                 return;
             }
+            const sub = trimmed.match(/^([^:]+?)\s*(?:score)?\s*:?\s*(\d+(?:\.\d+)?)(?:\s*\/\s*10)?$/i);
+            if (sub) {
+                if (!sections[current]) sections[current] = {};
+                if (!sections[current].subscores) sections[current].subscores = {};
+                const name = sub[1].replace(/\*+/g, '').trim().toLowerCase();
+                sections[current].subscores[name] = parseFloat(sub[2]);
+                return;
+            }
             if (!sections[current]) sections[current] = {};
             sections[current].extra = (sections[current].extra ? sections[current].extra + ' ' : '') + trimmed;
         }
