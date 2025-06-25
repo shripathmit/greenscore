@@ -5,15 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>EcoSnap</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="main.css">
 </head>
 <body>
+  <div id="header-placeholder"></div>
   <div id="root"></div>
+  <div id="footer-placeholder"></div>
 
   <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
   <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script type="text/babel" src="landing-page.js"></script>
+  <script src="components.js"></script>
   <script type="text/babel">
     ReactDOM.render(<LandingPage />, document.getElementById('root'));
   </script>

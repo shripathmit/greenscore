@@ -75,13 +75,6 @@ function LandingPage() {
   const [apiKey, setApiKey] = useState("");
   const [result, setResult] = useState("");
 
-  // Links moved to the footer
-  const footerLinks = [
-    { text: "About Us", href: "info.html#about" },
-    { text: "Why", href: "info.html#why" },
-    { text: "Blog", href: "info.html#blog" },
-    { text: "Green Agent", href: "green_agent.html" },
-  ];
 
   const handleSnap = (event) => {
     const file = event.target.files[0];
@@ -162,17 +155,6 @@ function LandingPage() {
 
   return (
     <div className="bg-white text-gray-800 font-sans">
-      {/* Header */}
-      <header className="w-full px-6 py-4 flex justify-between items-center shadow-sm md:px-8">
-        <div className="flex items-center gap-2">
-          <img src="assets/Camera%20log.png" alt="EcoSnap logo" className="w-6 h-6" />
-          <h1 className="text-xl font-bold text-green-600">EcoSnap</h1>
-        </div>
-        <nav className="flex gap-6 text-sm font-medium items-center">
-          <a href="index.html" className="hover:text-green-600">Home</a>
-          <a href="#" className="hover:text-green-600">Login</a>
-        </nav>
-      </header>
 
 
       {/* Hero Section */}
@@ -241,31 +223,6 @@ function LandingPage() {
       </section>
 
 
-      {/* Simplified Footer */}
-      <footer id="bottom" className="w-full bg-gray-900 text-white py-8 px-6 text-center">
-        <div className="flex flex-col items-center space-y-4">
-          <div className="flex items-center gap-2">
-            <div className="w-5 h-5 bg-green-600 rounded-full"></div>
-            <h5 className="text-lg font-bold">EcoSnap</h5>
-          </div>
-          <p className="text-sm text-gray-400 max-w-xs">
-            Making everyday choices greener with the power of AI.
-          </p>
-          <div className="flex flex-wrap justify-center gap-4 text-sm">
-            {footerLinks.map((link) => (
-              <a key={link.text} href={link.href} className="hover:underline">
-                {link.text}
-              </a>
-            ))}
-          </div>
-          <div className="flex gap-4">
-            <a href="#" className="text-gray-400 hover:text-white text-xl"><i className="fab fa-twitter"></i></a>
-            <a href="#" className="text-gray-400 hover:text-white text-xl"><i className="fab fa-instagram"></i></a>
-            <a href="#" className="text-gray-400 hover:text-white text-xl"><i className="fab fa-linkedin"></i></a>
-          </div>
-          <p className="text-xs text-gray-500">© 2025 EcoSnap. All rights reserved.</p>
-        </div>
-      </footer>
     </div>
   );
 }
