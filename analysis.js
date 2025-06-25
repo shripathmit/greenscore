@@ -382,7 +382,7 @@ function parseAnalysisText(text) {
             }
             if (/^\*?score\*?/i.test(trimmed)) {
                 if (!sections[current]) sections[current] = {};
-                const m = trimmed.match(/score\s*:?\s*(\d+(?:\.\d+)?)/i);
+                const m = trimmed.match(/\*?score\*?\s*:?\s*(\d+(?:\.\d+)?)(?:\s*\/\s*10)?/i);
                 if (m) sections[current].score = parseFloat(m[1]);
                 return;
             }
