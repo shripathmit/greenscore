@@ -19,28 +19,27 @@ function insertFooter() {
   const footer = document.getElementById('footer-placeholder');
   if (footer) {
     footer.innerHTML = `
-<footer class="w-full bg-gray-900 text-white py-8 px-6 text-center">
-  <div class="flex flex-col items-center space-y-4">
-    <div class="flex items-center gap-2">
-      <div class="w-5 h-5 bg-green-600 rounded-full"></div>
-      <h5 class="text-lg font-bold">EcoSnap</h5>
+<footer class="w-full bg-[#e4f2e7] text-gray-800 py-8 px-6">
+  <div class="max-w-5xl mx-auto flex flex-col md:flex-row md:items-center md:justify-between gap-6 text-center md:text-left">
+    <div class="flex flex-col items-center md:items-start gap-2 md:flex-1">
+      <div class="flex items-center gap-2">
+        <div class="w-5 h-5 bg-green-600 rounded-full"></div>
+        <h5 class="text-lg font-bold">EcoSnap</h5>
+      </div>
+      <p class="text-sm">Making everyday choices greener with the power of AI.</p>
     </div>
-    <p class="text-sm text-gray-400 max-w-xs">
-      Making everyday choices greener with the power of AI.
-    </p>
-    <div class="flex flex-wrap justify-center gap-4 text-sm">
+    <nav class="flex justify-center gap-4 text-sm md:flex-1">
       <a href="info.html#about" class="hover:underline">About Us</a>
       <a href="info.html#why" class="hover:underline">Why</a>
       <a href="info.html#blog" class="hover:underline">Blog</a>
-      <a href="green_agent.html" class="hover:underline">Green Agent</a>
+    </nav>
+    <div class="flex justify-center gap-4 md:flex-1">
+      <a href="#" class="text-gray-600 hover:text-gray-800 text-xl"><i class="fab fa-twitter"></i></a>
+      <a href="#" class="text-gray-600 hover:text-gray-800 text-xl"><i class="fab fa-instagram"></i></a>
+      <a href="#" class="text-gray-600 hover:text-gray-800 text-xl"><i class="fab fa-linkedin"></i></a>
     </div>
-    <div class="flex gap-4">
-      <a href="#" class="text-gray-400 hover:text-white text-xl"><i class="fab fa-twitter"></i></a>
-      <a href="#" class="text-gray-400 hover:text-white text-xl"><i class="fab fa-instagram"></i></a>
-      <a href="#" class="text-gray-400 hover:text-white text-xl"><i class="fab fa-linkedin"></i></a>
-    </div>
-    <p class="text-xs text-gray-500">© 2025 EcoSnap. All rights reserved.</p>
   </div>
+  <p class="mt-6 text-xs text-center text-gray-600">© 2025 EcoSnap. All rights reserved.</p>
 </footer>`;
   }
 }
