@@ -172,7 +172,7 @@ function LandingPage() {
           <h2 className="text-3xl font-bold mb-3">Make Every Choice Count</h2>
           <p className="text-xl text-green-700 mb-4">For the planet and for the future</p>
           <p className="text-base text-gray-700 mb-8">Use the power of AI to understand the green impact of your purchases.</p>
-          <label htmlFor="snap-input" className="block mb-4">
+          <label htmlFor="snap-input" className="block w-full mb-4">
             <input
               id="snap-input"
               type="file"
@@ -204,7 +204,7 @@ function LandingPage() {
                 onChange={(e) => setApiKey(e.target.value)}
                 className="w-full mb-4 px-3 py-2 rounded-full text-gray-800"
               />
-              <button onClick={handleScore} className="bg-green-600 text-white w-full px-8 py-4 rounded-full text-lg">
+              <button onClick={handleScore} className="bg-green-600 text-white w-full px-8 py-4 rounded-full text-lg hover:bg-green-700">
                 Score Me
               </button>
               {result && <p className="text-sm text-white whitespace-pre-wrap mt-4">{result}</p>}
