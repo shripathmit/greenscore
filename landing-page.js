@@ -99,11 +99,11 @@ function LandingPage() {
       return;
     }
 
+    sessionStorage.setItem('showSpinner', 'true');
     setLoading(true);
 
     const finalize = (text) => {
       setResult(text);
-      setLoading(false);
       sessionStorage.setItem('analysisResult', text);
       window.location.href = 'analysis.html';
     };
