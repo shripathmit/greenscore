@@ -231,6 +231,11 @@ class UserExperienceEnhancements {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
+    const overlay = document.getElementById('loading-overlay');
+    if (sessionStorage.getItem('showSpinner') === 'true' && overlay) {
+        overlay.style.display = 'flex';
+    }
+
     const stored = sessionStorage.getItem('analysisResult');
     let titleFromResult = '';
     if (stored) {
@@ -298,6 +303,11 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log(`Dashboard loaded in ${Math.round(loadTime)}ms`);
         });
     }
+
+    if (overlay) {
+        overlay.style.display = 'none';
+    }
+    sessionStorage.removeItem('showSpinner');
 });
 
 window.addEventListener('resize', function() {
