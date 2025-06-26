@@ -181,11 +181,11 @@ function LandingPage() {
               onChange={handleSnap}
               className="hidden"
             />
-            <button
-              type="button"
-              onClick={() => document.getElementById('snap-input').click()}
-              className="w-full px-8 py-4 rounded-full text-lg bg-green-600 text-white hover:bg-green-700"
-            >
+              <button
+                type="button"
+                onClick={() => document.getElementById('snap-input').click()}
+                className="w-full px-8 py-4 my-4 rounded-full text-lg bg-green-600 text-white hover:bg-green-700"
+              >
               Snap
             </button>
           </label>
