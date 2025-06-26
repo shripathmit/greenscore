@@ -168,18 +168,10 @@ function LandingPage() {
 
       {/* Hero Section */}
       <section id="home" className="w-full bg-cover bg-center py-16 px-8 text-center text-white" style={{ backgroundImage: "url('assets/Main Background.png')" }}>
-        <div className="max-w-md mx-auto bg-black bg-opacity-50 p-6 rounded-xl">
-          <h2 className="font-bold mb-4">
-            <span className="block" style={{ fontSize: 'calc(1.5rem * 1.25)' }}>
-              Make every choice count
-            </span>
-            <span className="block" style={{ fontSize: 'calc(1.5rem * 1.15)' }}>
-              for the planet and for the future
-            </span>
-          </h2>
-          <p className="text-base text-gray-300 mb-6" style={{ fontSize: 'calc(0.875rem * 1.2)' }}>
-            Use the power of AI to understand the green impact of your purchases
-          </p>
+        <div className="max-w-md mx-auto bg-gradient-to-r from-green-50 to-green-100 text-center flex flex-col items-center justify-center p-6 rounded-xl shadow-lg text-green-900">
+          <h2 className="text-3xl font-bold mb-3">Make Every Choice Count</h2>
+          <p className="text-xl text-green-700 mb-4">For the planet and for the future</p>
+          <p className="text-base text-gray-700 mb-8">Use the power of AI to understand the green impact of your purchases.</p>
           <label className="block mb-4">
             <input
               type="file"
