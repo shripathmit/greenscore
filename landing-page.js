@@ -172,17 +172,22 @@ function LandingPage() {
           <h2 className="text-3xl font-bold mb-3">Make Every Choice Count</h2>
           <p className="text-xl text-green-700 mb-4">For the planet and for the future</p>
           <p className="text-base text-gray-700 mb-8">Use the power of AI to understand the green impact of your purchases.</p>
-          <label className="block mb-4">
+          <label htmlFor="snap-input" className="block mb-4">
             <input
+              id="snap-input"
               type="file"
               accept="image/*"
               capture="environment"
               onChange={handleSnap}
               className="hidden"
             />
-            <span className="cursor-pointer bg-green-600 w-full block text-white px-8 py-4 rounded-full text-lg font-medium hover:bg-green-700 text-center">
+            <button
+              type="button"
+              onClick={() => document.getElementById('snap-input').click()}
+              className="w-full px-8 py-4 rounded-full text-lg bg-green-600 text-white hover:bg-green-700"
+            >
               Snap
-            </span>
+            </button>
           </label>
 
           {imagePreview && (
