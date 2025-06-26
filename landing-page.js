@@ -180,16 +180,9 @@ function LandingPage() {
               onChange={handleSnap}
               className="hidden"
             />
-            <button type="button" className="bg-green-600 text-white font-semibold py-3 px-6 rounded-full shadow-md hover:bg-green-700 transition flex items-center space-x-2">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5 fill-white"
-                viewBox="0 0 20 20"
-              >
-                <path d="M4 5a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2V7a2 2 0 00-2-2h-1.172a2 2 0 01-1.414-.586l-.828-.828A2 2 0 0011.172 3H8.828a2 2 0 00-1.414.586l-.828.828A2 2 0 015.172 5H4zm6 3a3 3 0 110 6 3 3 0 010-6z" />
-              </svg>
-              <span>Snap</span>
-            </button>
+            <span className="cursor-pointer bg-green-600 w-full block text-white px-8 py-4 rounded-full text-lg font-medium hover:bg-green-700 text-center">
+              Snap
+            </span>
           </label>
 
           {imagePreview && (
