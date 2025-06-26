@@ -4,8 +4,8 @@ function insertHeader() {
     header.innerHTML = `
 <header class="w-full px-8 py-4 flex justify-between items-center shadow-sm md:px-12">
   <div class="flex items-center gap-2">
-    <img src="assets/Camera%20log.png" alt="EcoSnap logo" class="w-6 h-6" />
-    <h1 class="text-3xl font-bold text-green-600">EcoSnap</h1>
+    <img src="assets/Camera%20log.png" alt="EcoSnap logo" class="w-10 h-10" />
+    <h1 class="text-5xl font-bold text-green-600">EcoSnap</h1>
   </div>
   <nav class="flex gap-6 text-sm font-medium items-center">
     <a href="index.html" class="hover:text-green-600">Home</a>
