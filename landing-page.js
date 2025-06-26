@@ -168,7 +168,7 @@ function LandingPage() {
 
       {/* Hero Section */}
       <section id="home" className="w-full bg-cover bg-center py-16 px-8 text-center text-white" style={{ backgroundImage: "url('assets/Main Background.png')" }}>
-        <div className="max-w-md mx-auto bg-gradient-to-r from-green-50 to-green-100 text-center flex flex-col items-center justify-center p-6 rounded-xl shadow-lg text-green-900">
+        <div className="max-w-6xl mx-auto bg-gradient-to-r from-green-50 to-green-100 text-center flex flex-col items-center justify-center p-6 rounded-xl shadow-lg text-green-900">
           <h2 className="text-3xl font-bold mb-3">Make Every Choice Count</h2>
           <p className="text-xl text-green-700 mb-4">For the planet and for the future</p>
           <p className="text-base text-gray-700 mb-8">Use the power of AI to understand the green impact of your purchases.</p>
