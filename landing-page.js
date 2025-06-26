@@ -184,6 +184,37 @@ function LandingPage() {
             </span>
           </label>
 
+          {/* How It Works */}
+          <div className="grid gap-4 sm:grid-cols-3 text-left mb-6">
+            <div className="flex items-start gap-3">
+              <div className="w-10 h-10 flex items-center justify-center bg-green-600 bg-opacity-20 rounded-full text-2xl">
+                📷
+              </div>
+              <div>
+                <h4 className="font-semibold">Upload a Photo</h4>
+                <p className="text-sm text-gray-300">Snap or upload any consumer product</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3">
+              <div className="w-10 h-10 flex items-center justify-center bg-green-600 bg-opacity-20 rounded-full text-2xl">
+                🤖
+              </div>
+              <div>
+                <h4 className="font-semibold">AI Analysis</h4>
+                <p className="text-sm text-gray-300">Our eco trained model analyzes materials, packaging & more</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3">
+              <div className="w-10 h-10 flex items-center justify-center bg-green-600 bg-opacity-20 rounded-full text-2xl">
+                🌿
+              </div>
+              <div>
+                <h4 className="font-semibold">Get your Greenscore</h4>
+                <p className="text-sm text-gray-300">See your score and learn how to choose greener</p>
+              </div>
+            </div>
+          </div>
+
           {imagePreview && (
             <>
               <img
