@@ -49,7 +49,7 @@ GreenScore: Provide an estimated GreenScore (0-10) based on these factors, deriv
 
 Always return response in the example format.
 
-### Sustainability Analysis of the Product
+### Sustainability Analysis of the Product Name (example its Stainless Steeel Tumbler in this case)
 #### Materials
 - *Assumption*: The tumbler appears to be made of stainless steel with a plastic lid and straw.
 - *Evaluation*: Stainless steel is a durable and recyclable material. If the plastic used is recyclable, it adds to the sustainability.
