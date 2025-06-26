@@ -5,7 +5,7 @@ function insertHeader() {
 <header class="w-full px-8 py-4 flex justify-between items-center shadow-sm md:px-12">
   <div class="flex items-center gap-2">
     <img src="assets/Camera%20log.png" alt="EcoSnap logo" class="w-6 h-6" />
-    <h1 class="text-2xl font-bold text-green-600">EcoSnap</h1>
+    <h1 class="text-3xl font-bold text-green-600">EcoSnap</h1>
   </div>
   <nav class="flex gap-6 text-sm font-medium items-center">
     <a href="index.html" class="hover:text-green-600">Home</a>
@@ -24,7 +24,7 @@ function insertFooter() {
     <div class="flex flex-col items-center md:items-start gap-2 md:flex-1">
       <div class="flex items-center gap-2">
         <div class="w-5 h-5 bg-green-600 rounded-full"></div>
-        <h5 class="text-lg font-bold">EcoSnap</h5>
+        <h5 class="text-xl font-bold">EcoSnap</h5>
       </div>
       <p class="text-sm">Making everyday choices greener with the power of AI.</p>
     </div>
