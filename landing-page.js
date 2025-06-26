@@ -180,7 +180,7 @@ function LandingPage() {
               onChange={handleSnap}
               className="hidden"
             />
-            <span className="cursor-pointer bg-green-600 w-full block text-white px-12 py-4 rounded-full text-2xl font-medium hover:bg-green-700 text-center">
+            <span className="cursor-pointer bg-green-600 w-full block text-white px-8 py-4 rounded-full text-lg font-medium hover:bg-green-700 text-center">
               Snap
             </span>
           </label>
