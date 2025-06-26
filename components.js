@@ -8,8 +8,11 @@ function insertHeader() {
     <h1 class="text-4xl font-bold text-green-600">EcoSnap</h1>
   </div>
   <nav class="flex gap-6 text-sm font-medium items-center">
-    <a href="index.html" class="hover:text-green-600">Home</a>
-    <a href="#" class="hover:text-green-600">Login</a>
+    <a href="index.html" aria-label="Home" class="hover:text-green-600">
+      <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+        <path d="M10.707 1.293a1 1 0 00-1.414 0L2 8.586V19a1 1 0 001 1h5a1 1 0 001-1v-4h2v4a1 1 0 001 1h5a1 1 0 001-1V8.586l-7.293-7.293z"/>
+      </svg>
+    </a>
   </nav>
 </header>`;
   }
