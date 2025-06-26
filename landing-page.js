@@ -159,6 +159,11 @@ function LandingPage() {
 
   return (
     <div className="bg-white text-gray-800 font-sans">
+      {loading && (
+        <div className="loading-overlay">
+          <div className="loader" aria-label="Loading"></div>
+        </div>
+      )}
 
 
       {/* Hero Section */}
@@ -196,11 +201,6 @@ function LandingPage() {
               <button onClick={handleScore} className="bg-white w-full text-green-700 px-6 py-2 rounded-full text-sm font-medium hover:bg-gray-200">
                 Score Me
               </button>
-              {loading && (
-                <div className="flex justify-center mt-4">
-                  <div className="loader" aria-label="Loading"></div>
-                </div>
-              )}
               {result && <p className="text-sm text-white whitespace-pre-wrap mt-4">{result}</p>}
             </>
           )}

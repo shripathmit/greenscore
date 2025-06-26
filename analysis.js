@@ -419,9 +419,12 @@ function parseAnalysisText(text) {
 }
 
 function extractTitle(text) {
-    const m = text.match(/Sustainability Analysis of(?: the)?\s+(.+)/i);
-    if (m) {
-        return m[1].trim();
+    const lines = text.split(/\n+/);
+    for (const line of lines) {
+        const m = line.match(/Sustainability Analysis of(?: the)?\s*(.+)/i);
+        if (m && m[1]) {
+            return m[1].replace(/[\*#]/g, '').trim();
+        }
     }
     return '';
 }
