@@ -169,8 +169,17 @@ function LandingPage() {
       {/* Hero Section */}
       <section id="home" className="w-full bg-cover bg-center py-16 px-8 text-center text-white" style={{ backgroundImage: "url('assets/Main Background.png')" }}>
         <div className="max-w-md mx-auto bg-black bg-opacity-50 p-6 rounded-xl">
-          <h2 className="text-2xl md:text-3xl font-bold mb-4">Make every choice count — for the planet and for the future</h2>
-          <p className="text-sm text-gray-300 mb-6">Use the power of AI to understand the green impact of your purchases</p>
+          <h2 className="font-bold mb-4">
+            <span className="block" style={{ fontSize: 'calc(1.5rem * 1.25)' }}>
+              Make every choice count
+            </span>
+            <span className="block" style={{ fontSize: 'calc(1.5rem * 1.15)' }}>
+              for the planet and for the future
+            </span>
+          </h2>
+          <p className="text-base text-gray-300 mb-6" style={{ fontSize: 'calc(0.875rem * 1.2)' }}>
+            Use the power of AI to understand the green impact of your purchases
+          </p>
           <label className="block mb-4">
             <input
               type="file"
@@ -179,7 +188,7 @@ function LandingPage() {
               onChange={handleSnap}
               className="hidden"
             />
-            <span className="cursor-pointer bg-green-600 w-full block text-white px-8 py-3 rounded-full text-base font-medium hover:bg-green-700 text-center">
+            <span className="cursor-pointer bg-green-600 w-full block text-white px-8 py-3 rounded-full text-xl font-medium hover:bg-green-700 text-center">
               Snap
             </span>
           </label>
