@@ -180,7 +180,7 @@ function LandingPage() {
               onChange={handleSnap}
               className="hidden"
             />
-            <span className="cursor-pointer bg-green-600 w-full block text-white px-8 py-3 rounded-full text-xl font-medium hover:bg-green-700 text-center">
+            <span className="cursor-pointer bg-green-600 w-full block text-white px-12 py-4 rounded-full text-2xl font-medium hover:bg-green-700 text-center">
               Snap
             </span>
           </label>
@@ -199,7 +199,7 @@ function LandingPage() {
                 onChange={(e) => setApiKey(e.target.value)}
                 className="w-full mb-4 px-3 py-2 rounded-full text-gray-800"
               />
-              <button onClick={handleScore} className="bg-white w-full text-green-700 px-6 py-2 rounded-full text-sm font-medium hover:bg-gray-200">
+              <button onClick={handleScore} className="bg-white w-full text-green-700 px-8 py-4 rounded-full text-lg font-medium hover:bg-gray-200">
                 Score Me
               </button>
               {result && <p className="text-sm text-white whitespace-pre-wrap mt-4">{result}</p>}
@@ -214,17 +214,17 @@ function LandingPage() {
         style={{ backgroundImage: "url('assets/Main Background.png')" }}
       >
         <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-8">
-          <div className="bg-white rounded-xl shadow py-6 px-8 text-center hover:shadow-md">
+          <div className="bg-white rounded-xl shadow py-6 px-8 text-center hover:shadow-md mx-4">
             <div className="w-12 h-12 bg-green-100 rounded-full mx-auto mb-4"></div>
             <h4 className="text-lg font-semibold mb-2">Why EcoSnap?</h4>
             <p className="text-gray-600 text-sm">EcoSnap gives you instant green scoring with transparent AI so you can buy better without the guesswork.</p>
           </div>
-          <div className="bg-white rounded-xl shadow py-6 px-8 text-center hover:shadow-md">
+          <div className="bg-white rounded-xl shadow py-6 px-8 text-center hover:shadow-md mx-4">
             <div className="w-12 h-12 bg-green-100 rounded-full mx-auto mb-4"></div>
             <h4 className="text-lg font-semibold mb-2">Who It's For</h4>
             <p className="text-gray-600 text-sm">From eco-conscious shoppers to sustainability-focused brands, EcoSnap is built for anyone making mindful decisions.</p>
           </div>
-          <div className="bg-white rounded-xl shadow py-6 px-8 text-center hover:shadow-md">
+          <div className="bg-white rounded-xl shadow py-6 px-8 text-center hover:shadow-md mx-4">
             <div className="w-12 h-12 bg-green-100 rounded-full mx-auto mb-4"></div>
             <h4 className="text-lg font-semibold mb-2">Our AI Advantage</h4>
             <p className="text-gray-600 text-sm">Backed by data and constantly learning, EcoSnap’s AI delivers fast, reliable impact scores tailored to your choices.</p>
