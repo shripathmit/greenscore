@@ -199,7 +199,7 @@ function LandingPage() {
                 onChange={(e) => setApiKey(e.target.value)}
                 className="w-full mb-4 px-3 py-2 rounded-full text-gray-800"
               />
-              <button onClick={handleScore} className="bg-white w-full text-green-700 px-8 py-4 rounded-full text-lg font-medium hover:bg-gray-200">
+              <button onClick={handleScore} className="bg-green-600 text-white w-full px-8 py-4 rounded-full text-lg">
                 Score Me
               </button>
               {result && <p className="text-sm text-white whitespace-pre-wrap mt-4">{result}</p>}
